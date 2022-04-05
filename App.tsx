@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import { setBackgroundColorAsync } from 'expo-navigation-bar'
 
 import { theme_main } from './styles/colors'
+import CoreStyle from './styles/core'
 
 export default function App() {
   useEffect(() => {
@@ -15,9 +16,9 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <SafeAreaProvider>
+      <SafeAreaProvider style={CoreStyle.background_dark}>
         <StatusBar style="inverted" />
-        <TabNavigation />
+        <TabNavigation/>
       </SafeAreaProvider>
     </NavigationContainer>
   )

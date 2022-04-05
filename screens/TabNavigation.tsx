@@ -27,6 +27,9 @@ export default () => {
     tabBarStyle: {
       backgroundColor: theme_main.x_dark,
       height: 72,
+      borderTopLeftRadius: 35,
+      borderTopRightRadius: 35,
+      borderTopWidth: 0
     },
     tabBarActiveTintColor: theme_main.light,
     tabBarInactiveTintColor: theme_main.light_50,

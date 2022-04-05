@@ -2,8 +2,7 @@ import { StyleSheet } from 'react-native'
 import { theme_main } from './colors'
 
 export default StyleSheet.create({
-  test: {
-    color: theme_main.xx_light,
-    fontSize: 28,
+  background_dark: {
+    backgroundColor: theme_main.xx_dark,
   },
 })
