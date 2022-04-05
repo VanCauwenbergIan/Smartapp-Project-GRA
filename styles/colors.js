@@ -7,6 +7,8 @@ export const theme_main = {
   light: '#D1D1D1',
   x_light: '#E2E2E2',
   xx_light: '#F0F0F0',
+
+  light_50: '#82868B',
 }
 
 export const theme_accent = {

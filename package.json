@@ -22,7 +22,8 @@
     "react-native-screens": "~3.10.1",
     "react-native-web": "0.17.1",
     "react-native-gesture-handler": "~2.1.0",
-    "@react-native-masked-view/masked-view": "0.2.6"
+    "@react-native-masked-view/masked-view": "0.2.6",
+    "expo-navigation-bar": "~1.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
