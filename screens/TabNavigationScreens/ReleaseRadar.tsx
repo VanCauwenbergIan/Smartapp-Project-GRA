@@ -7,8 +7,14 @@ import UtilsStyle from '../../styles/utils'
 
 export default () => {
   return (
-    <SafeAreaView style={[CoreStyle.background_dark, UtilsStyle.full_size]}>
-      <Text style={TextStyle.test}>ReleaseRadar</Text>
+    <SafeAreaView
+      style={[
+        CoreStyle.background_dark,
+        UtilsStyle.full_size,
+        CoreStyle.main_container,
+      ]}
+    >
+      <Text style={TextStyle.title}>Release Radar</Text>
     </SafeAreaView>
   )
 }
