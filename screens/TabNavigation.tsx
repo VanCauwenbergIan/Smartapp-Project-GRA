@@ -16,7 +16,7 @@ import { View } from 'react-native'
 
 import { theme_accent, theme_main } from '../styles/colors'
 import ButtonsStyle from '../styles/buttons'
-import StyleUtils from '../styles/utils'
+import UtilsStyle from '../styles/utils'
 
 export default () => {
   const Tab = createBottomTabNavigator()
@@ -78,7 +78,7 @@ export default () => {
             <View
               style={[
                 ButtonsStyle.central_icon,
-                StyleUtils.center_content,
+                UtilsStyle.center_content,
                 {
                   backgroundColor: focused
                     ? theme_accent.alpha
