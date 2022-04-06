@@ -1,5 +1,3 @@
-// all colors come here
-
 export const theme_main = {
   xxx_dark: '#181D23',
   xx_dark: '#272F38',

@@ -3,6 +3,7 @@ import Artwork from './artwork'
 import Company from './company'
 import Name from './name'
 import Rating from './rating'
+import Release from './releaseDate'
 
 export default interface Game {
   id: number
@@ -12,6 +13,7 @@ export default interface Game {
   artworks: Artwork[]
   cover: Artwork
   first_release_date: number
+  release_dates: Release[]
   game_modes: Name[]
   genres: Name[]
   involved_companies: Company[]
