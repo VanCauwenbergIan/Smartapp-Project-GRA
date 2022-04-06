@@ -2,54 +2,28 @@ import { Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { FlatList } from 'react-native-gesture-handler'
 import CardLarge from '../../components/card_large'
+import { useEffect, useState } from 'react'
+import { getPopularGames } from '../../utils/requests'
+import Game from '../../interfaces/game'
+import AppLoading from 'expo-app-loading'
 
 import TextStyle from '../../styles/text'
 import CoreStyle from '../../styles/core'
 import UtilsStyle from '../../styles/utils'
 
-const testArray = [
-  {
-    id: 1,
-    name: 'Elden Ring',
-    genre: 'Role-playing (RPG)',
-    rating: 97,
-    developer: 'FromSoftware',
-  },
-  {
-    id: 2,
-    name: 'Elden Ring',
-    genre: 'Role-playing (RPG)',
-    rating: 97,
-    developer: 'FromSoftware',
-  },
-  {
-    id: 3,
-    name: 'Elden Ring',
-    genre: 'Role-playing (RPG)',
-    rating: 97,
-    developer: 'FromSoftware',
-  },
-  {
-    id: 4,
-    name: 'Elden Ring',
-    genre: 'Role-playing (RPG)',
-    rating: 97,
-    developer: 'FromSoftware',
-  },
-  {
-    id: 5,
-    name: 'Elden Ring',
-    genre: 'Role-playing (RPG)',
-    rating: 97,
-    developer: 'FromSoftware',
-  },
-]
-
-const renderGame = ({ item }: { item: any }) => {
-  return <CardLarge game={item} key={item.id} />
+const renderGame = ({ item }: { item: Game }) => {
+  return <CardLarge game={item} />
 }
 
 export default () => {
+  const [popGames, setPopGames] = useState<Game[]>()
+
+  useEffect(() => {
+    getPopularGames().then((r) => {
+      setPopGames(r.data)
+    })
+  }, [])
+
   return (
     <SafeAreaView
       style={[
@@ -61,7 +35,7 @@ export default () => {
       <Text style={[TextStyle.title, UtilsStyle.mb_3]}>
         Popular games {'\n'}right now
       </Text>
-      <FlatList data={testArray} renderItem={renderGame} />
+      <FlatList data={popGames} renderItem={renderGame} />
     </SafeAreaView>
   )
 }
