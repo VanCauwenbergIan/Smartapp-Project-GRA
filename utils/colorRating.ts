@@ -1,7 +1,7 @@
-import { theme_indicator } from '../styles/colors'
+import { theme_indicator, theme_main } from '../styles/colors'
 
-export const getColorRating = (r: number) => {
-  if (r < 10) {
+export const getColorRating = (r: number): string[] => {
+  if (0 < r && r < 10) {
     return theme_indicator[0]
   } else if (r < 20) {
     return theme_indicator[10]
@@ -21,5 +21,8 @@ export const getColorRating = (r: number) => {
     return theme_indicator[80]
   } else if (r < 100) {
     return theme_indicator[90]
+  }
+  else {
+    return ["No rating",theme_main.light]
   }
 }

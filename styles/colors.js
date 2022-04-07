@@ -18,14 +18,14 @@ export const theme_accent = {
 }
 
 export const theme_indicator = {
-  0: '#E23131',
-  10: '#E55234',
-  20: '#E87336',
-  30: '#EB9439',
-  40: '#EEB53B',
-  50: '#CDB64B',
-  60: '#ACB75B',
-  70: '#8CB96A',
-  80: '#6BBA7A',
-  90: '#4ABB8A',
+  0: ['Awful', '#E23131'],
+  10: ['Very Bad', '#E55234'],
+  20: ['Bad', '#E87336'],
+  30: ['Unimpressive', '#EB9439'],
+  40: ['Mediocre', '#EEB53B'],
+  50: ['Fair', '#CDB64B'],
+  60: ['Alright', '#ACB75B'],
+  70: ['Good', '#8CB96A'],
+  80: ['Great', '#6BBA7A'],
+  90: ['Superb', '#4ABB8A'],
 }

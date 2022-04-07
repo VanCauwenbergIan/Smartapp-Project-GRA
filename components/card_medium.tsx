@@ -46,7 +46,7 @@ export default ({ game }: { game: Game }) => {
             TextStyle.card_m_sub,
           ]}
         >
-          {game.release_dates[0].human}
+          {game.release_dates? game.release_dates[game.release_dates.length - 1].human : 'TBD'}
         </Text>
       </View>
     </Pressable>

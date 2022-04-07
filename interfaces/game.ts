@@ -4,31 +4,32 @@ import Company from './company'
 import Name from './name'
 import Rating from './rating'
 import Release from './releaseDate'
+import SecondaryGame from './secondaryGame'
 
 export default interface Game {
   id: number
-  age_rating: Rating[]
-  aggregated_rating: number
-  aggregated_rating_count: number
-  artworks: Artwork[]
+  age_rating?: Rating[]
+  aggregated_rating?: number
+  aggregated_rating_count?: number
+  artworks?: Artwork[]
   cover: Artwork
-  first_release_date: number
-  release_dates: Release[]
-  game_modes: Name[]
-  genres: Name[]
-  involved_companies: Company[]
-  hypes: number
+  first_release_date?: number
+  release_dates?: Release[]
+  game_modes?: Name[]
+  genres?: Name[]
+  involved_companies?: Company[]
+  hypes?: number
   name: string
-  platforms: Name[]
-  player_perspectives: Name[]
-  rating: number
-  rating_count: number
-  screenshots: Artwork[]
-  similar_games: number[]
-  slug: string
-  storyline: string
-  summary: string
-  themes: Name[]
-  total_rating: number
-  total_rating_count: number
+  platforms?: Name[]
+  player_perspectives?: Name[]
+  rating?: number
+  rating_count?: number
+  screenshots?: Artwork[]
+  similar_games?: SecondaryGame[]
+  slug?: string
+  storyline?: string
+  summary?: string
+  themes?: Name[]
+  total_rating?: number
+  total_rating_count?: number
 }
