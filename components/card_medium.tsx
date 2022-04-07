@@ -1,11 +1,15 @@
 import { Image, Pressable, Text, View } from 'react-native'
 import Game from '../interfaces/game'
+import { ParamListBase, useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 
 import UtilsStyle from '../styles/utils'
 import ButtonsStyle from '../styles/buttons'
 import TextStyle from '../styles/text'
 
 export default ({ game }: { game: Game }) => {
+  const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
+
   return (
     <Pressable
       style={[
@@ -13,6 +17,7 @@ export default ({ game }: { game: Game }) => {
         ButtonsStyle.card_medium,
         UtilsStyle.mr_2,
       ]}
+      onPress={() => navigate('Details', { id: game.id })}
     >
       <View style={UtilsStyle.h_85}>
         <Image
@@ -46,7 +51,9 @@ export default ({ game }: { game: Game }) => {
             TextStyle.card_m_sub,
           ]}
         >
-          {game.release_dates? game.release_dates[game.release_dates.length - 1].human : 'TBD'}
+          {game.release_dates
+            ? game.release_dates[game.release_dates.length - 1].human
+            : 'TBD'}
         </Text>
       </View>
     </Pressable>

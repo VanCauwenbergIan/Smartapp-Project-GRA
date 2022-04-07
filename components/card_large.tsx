@@ -2,6 +2,8 @@ import { Image, Pressable, Text, View } from 'react-native'
 import { getColorRating } from '../utils/colorRating'
 import Game from '../interfaces/game'
 import { getDeveloper } from '../utils/requests'
+import { ParamListBase, useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 
 import TextStyle from '../styles/text'
 import UtilsStyle from '../styles/utils'
@@ -9,9 +11,12 @@ import ButtonsStyle from '../styles/buttons'
 import { theme_main } from '../styles/colors'
 
 export default ({ game }: { game: Game }) => {
+  const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
+
   return (
     <Pressable
       style={[UtilsStyle.flex_row, ButtonsStyle.card_large, UtilsStyle.mb_3]}
+      onPress={() => navigate('Details', {id: game.id})}
     >
       <View style={UtilsStyle.w_50}>
         <Image
@@ -39,10 +44,16 @@ export default ({ game }: { game: Game }) => {
             TextStyle.title,
             UtilsStyle.text_bold,
             UtilsStyle.mb_2,
-            { color: game.aggregated_rating? getColorRating(game.aggregated_rating)[1] : theme_main.light },
+            {
+              color: game.aggregated_rating
+                ? getColorRating(game.aggregated_rating)[1]
+                : theme_main.light,
+            },
           ]}
         >
-          {game.aggregated_rating? Math.round(game.aggregated_rating) + '%': 'N/A'}
+          {game.aggregated_rating
+            ? Math.round(game.aggregated_rating) + '%'
+            : 'N/A'}
         </Text>
         <Text
           style={[
