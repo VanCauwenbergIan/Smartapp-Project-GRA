@@ -13,6 +13,8 @@ import {
   MaterialIcons,
 } from '@expo/vector-icons'
 import { View } from 'react-native'
+import AnticipatedToDetail from './stackNavigations/AnticipatedToDetail'
+import TrendingToDetail from './stackNavigations/TrendingToDetail'
 
 import { theme_accent, theme_main } from '../styles/colors'
 import ButtonsStyle from '../styles/buttons'
@@ -29,7 +31,7 @@ export default () => {
       height: 72,
       borderTopLeftRadius: 35,
       borderTopRightRadius: 35,
-      borderTopWidth: 0
+      borderTopWidth: 0,
     },
     tabBarActiveTintColor: theme_main.light,
     tabBarInactiveTintColor: theme_main.light_50,
@@ -56,7 +58,7 @@ export default () => {
       />
       <Tab.Screen
         name="Trending"
-        component={Trending}
+        component={TrendingToDetail}
         options={{
           tabBarLabel: 'Trending',
           tabBarIcon: ({ color, focused }) => (
@@ -99,7 +101,7 @@ export default () => {
       />
       <Tab.Screen
         name="ReleaseRadar"
-        component={ReleaseRadar}
+        component={AnticipatedToDetail}
         options={{
           tabBarLabel: 'ReleaseRadar',
           tabBarIcon: ({ color, focused }) => (
