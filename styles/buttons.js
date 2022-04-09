@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { theme_main } from './colors'
+import { theme_accent, theme_main } from './colors'
 
 export default StyleSheet.create({
   central_icon: {
@@ -26,11 +26,32 @@ export default StyleSheet.create({
     borderRadius: 5,
   },
 
+  card_small: {
+    height: 176,
+    width: 112,
+
+    backgroundColor: theme_main.dark,
+    borderRadius: 5,
+  },
+
+  cs_textbox: {
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+  },
+
   card_lv: {
     height: 80,
     width: '100%',
 
     backgroundColor: theme_main.x_dark,
+    borderRadius: 5,
+  },
+
+  theme_tag: {
+    alignSelf: 'center',
+
+    borderWidth: 1,
+    borderColor: theme_accent.alpha_dark,
     borderRadius: 5,
   },
 })

@@ -12,6 +12,11 @@ export default StyleSheet.create({
     fontSize: 20,
   },
 
+  body: {
+    color: theme_main.light,
+    fontSize: 16,
+  },
+
   card_l_main: {
     color: theme_main.xx_light,
     fontSize: 20,

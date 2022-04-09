@@ -12,11 +12,11 @@ import CoreStyle from '../../styles/core'
 import UtilsStyle from '../../styles/utils'
 
 const renderGameH = ({ item }: { item: Game }) => {
-  return <CardMedium game={item} />
+  return <CardMedium game={item} key={item.id} />
 }
 
 const renderGameV = ({ item }: { item: Game }) => {
-  return <CardLV game={item} />
+  return <CardLV game={item} key={item.id} />
 }
 
 export default () => {
@@ -56,7 +56,7 @@ export default () => {
       </Text>
       <View>
         <FlatList
-          contentContainerStyle={{paddingBottom: 64}}
+          contentContainerStyle={{ paddingBottom: 64 }}
           data={newGames}
           renderItem={renderGameV}
         />
