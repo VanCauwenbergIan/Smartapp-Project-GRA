@@ -8,7 +8,7 @@ import SecondaryGame from './secondaryGame'
 
 export default interface Game {
   id: number
-  age_rating?: Rating[]
+  age_ratings?: Rating[]
   aggregated_rating?: number
   aggregated_rating_count?: number
   artworks?: Artwork[]

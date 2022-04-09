@@ -16,7 +16,7 @@ export default ({ game }: { game: Game }) => {
   return (
     <Pressable
       style={[UtilsStyle.flex_row, ButtonsStyle.card_large, UtilsStyle.mb_3]}
-      onPress={() => navigate('Details', {id: game.id})}
+      onPress={() => navigate('Details', { id: game.id })}
     >
       <View style={UtilsStyle.w_50}>
         <Image
@@ -25,7 +25,9 @@ export default ({ game }: { game: Game }) => {
             { borderTopLeftRadius: 10, borderBottomLeftRadius: 10 },
           ]}
           source={{
-            uri: `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.png`,
+            uri: `https://images.igdb.com/igdb/image/upload/t_cover_big/${
+              game.cover ? game.cover.image_id : 'nocover'
+            }.png`,
           }}
         />
       </View>

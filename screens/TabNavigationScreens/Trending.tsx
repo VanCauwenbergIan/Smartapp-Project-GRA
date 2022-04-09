@@ -12,7 +12,7 @@ import CoreStyle from '../../styles/core'
 import UtilsStyle from '../../styles/utils'
 
 const renderGame = ({ item }: { item: Game }) => {
-  return <CardLarge game={item} />
+  return <CardLarge game={item} key={item.id} />
 }
 
 export default () => {
@@ -35,10 +35,7 @@ export default () => {
       <Text style={[TextStyle.title, UtilsStyle.mb_3]}>
         Popular games {'\n'}right now
       </Text>
-      <FlatList
-        data={popGames}
-        renderItem={renderGame}
-      />
+      <FlatList data={popGames} renderItem={renderGame} />
     </SafeAreaView>
   )
 }

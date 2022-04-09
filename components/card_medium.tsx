@@ -6,6 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import UtilsStyle from '../styles/utils'
 import ButtonsStyle from '../styles/buttons'
 import TextStyle from '../styles/text'
+import { getReleaseDate } from '../utils/requests'
 
 export default ({ game }: { game: Game }) => {
   const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
@@ -26,7 +27,9 @@ export default ({ game }: { game: Game }) => {
             { borderTopLeftRadius: 5, borderTopRightRadius: 5 },
           ]}
           source={{
-            uri: `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.png`,
+            uri: `https://images.igdb.com/igdb/image/upload/t_cover_big/${
+              game.cover ? game.cover.image_id : 'nocover'
+            }.png`,
           }}
         />
       </View>
@@ -51,9 +54,7 @@ export default ({ game }: { game: Game }) => {
             TextStyle.card_m_sub,
           ]}
         >
-          {game.release_dates
-            ? game.release_dates[game.release_dates.length - 1].human
-            : 'TBD'}
+          {getReleaseDate(game)}
         </Text>
       </View>
     </Pressable>

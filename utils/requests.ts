@@ -29,7 +29,7 @@ export const getAnticipatedGames = () => {
       'Client-ID': igdb_clientid,
       Authorization: `Bearer ${igdb_token}`,
     },
-    data: `fields cover.image_id, first_release_date, release_dates.human, name; limit 100;where first_release_date > ${currentTimestamp} & hypes != null; sort hypes desc;`,
+    data: `fields cover.image_id, first_release_date, release_dates.human, release_dates.date , name; limit 100;where first_release_date > ${currentTimestamp} & hypes != null; sort hypes desc;`,
   })
 }
 
@@ -43,12 +43,12 @@ export const getNewReleases = () => {
       'Client-ID': igdb_clientid,
       Authorization: `Bearer ${igdb_token}`,
     },
-    data: `fields cover.image_id, first_release_date, release_dates.human, game_modes.name, name, platforms.name; limit 500; where first_release_date < ${currentTimestamp};  sort first_release_date desc;`,
+    data: `fields cover.image_id, first_release_date, release_dates.human, release_dates.date , game_modes.name, name, platforms.name; limit 500; where first_release_date < ${currentTimestamp};  sort first_release_date desc;`,
   })
 }
 
 // untested
-const getSingleGame = (id: number) => {
+export const getSingleGame = (id: number) => {
   return axios({
     url: igdb_uri + '/games',
     method: 'POST',
@@ -57,25 +57,28 @@ const getSingleGame = (id: number) => {
       'Client-ID': igdb_clientid,
       Authorization: `Bearer ${igdb_token}`,
     },
-    data: `fields age_ratings.rating, aggregated_rating, aggregated_rating_count, artworks.image_id, cover.image_id, first_release_date, game_modes.name, genres.name, involved_companies.developer, involved_companies.company.name, name, platforms.name, player_perspectives.name, rating, rating_count, screenshots.image_id,similar_games.name similar_games.cover.image_id, slug, storyline, summary, themes.name, total_rating, total_rating_count; where id = ${id};`,
+    data: `fields age_ratings.rating, age_ratings.category , aggregated_rating, aggregated_rating_count, artworks.image_id, cover.image_id, first_release_date, release_dates.human, release_dates.date , game_modes.name, genres.name, involved_companies.developer, involved_companies.company.name, name, platforms.name, player_perspectives.name, rating, rating_count, screenshots.image_id,similar_games.name, similar_games.cover.image_id, slug, storyline, summary, themes.name, total_rating, total_rating_count; where id = ${id};`,
   })
 }
 
-export const getDeveloper = (game: Game): string => {
+export const getDeveloper = (game?: Game): string => {
   let r: string = ''
-  game.involved_companies?.forEach((i) => {
-    if (i.developer) {
-      r = i.company.name
-    }
-  })
+
+  if (game) {
+    game.involved_companies?.forEach((i) => {
+      if (i.developer) {
+        r = i.company.name
+      }
+    })
+  }
 
   return r
 }
 
-export const getPlatform = (game: Game): string => {
+export const getPlatform = (game?: Game): string => {
   let r: string = ' '
 
-  if (game.platforms) {
+  if (game && game.platforms) {
     const l = game.platforms.length
     let c = 0
 
@@ -87,6 +90,59 @@ export const getPlatform = (game: Game): string => {
         r += `${i.name}, `
       }
     })
+  }
+
+  return r
+}
+
+export const getReleaseDate = (game?: Game): string => {
+  let r: string = 'TBD'
+
+  if (game && game.first_release_date && game.release_dates) {
+    game.release_dates.forEach((i) => {
+      if (game.first_release_date == i.date) {
+        r = i.human
+      }
+    })
+  }
+
+  return r
+}
+
+const convertRating = [
+  ['3+', '#6BBA7A'],
+  ['7+', '#ACB75B'],
+  ['12+', '#EEB53B'],
+  ['16+', '#E87336'],
+  ['18+', '#E23131'],
+]
+
+export const getAgeRating = (game?: Game): string[] => {
+  let r: string[] = ['Awaiting a rating', '#404E5C']
+
+  if (game && game.age_ratings) {
+    game.age_ratings.forEach((i) => {
+      if (i.category == 2) {
+        r = convertRating[i.rating - 1]
+      }
+    })
+  }
+
+  return r
+}
+
+export const getThemes = (game?: Game): any[] => {
+  let r: any[] = []
+
+  if (game && game.genres) {
+    r = game.genres
+
+    if (game.themes) {
+      r = game.genres.concat(game.themes)
+    }
+    if (game.player_perspectives) {
+      r = r.concat(game.player_perspectives)
+    }
   }
 
   return r

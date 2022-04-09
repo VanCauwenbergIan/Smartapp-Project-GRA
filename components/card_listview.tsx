@@ -1,6 +1,6 @@
 import { Image, Pressable, Text, View } from 'react-native'
 import Game from '../interfaces/game'
-import { getPlatform } from '../utils/requests'
+import { getPlatform, getReleaseDate } from '../utils/requests'
 import { ParamListBase, useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 
@@ -14,7 +14,7 @@ export default ({ game }: { game: Game }) => {
   return (
     <Pressable
       style={[UtilsStyle.flex_row, ButtonsStyle.card_lv, UtilsStyle.mb_2]}
-      onPress={() => navigate('Details', {id: game.id})}
+      onPress={() => navigate('Details', { id: game.id })}
     >
       <View style={{ width: 80 }}>
         <Image
@@ -45,17 +45,13 @@ export default ({ game }: { game: Game }) => {
           >
             {game.name}
           </Text>
-          <Text style={TextStyle.card_m_sub}>
-            {game.release_dates
-              ? game.release_dates[game.release_dates.length - 1].human
-              : 'TBD'}
-          </Text>
+          <Text style={TextStyle.card_m_sub}>{getReleaseDate(game)}</Text>
         </View>
         <Text
           numberOfLines={2}
           style={[TextStyle.card_m_main, , UtilsStyle.h_50]}
         >
-          Platforms:{' '}
+          Platforms:
           <Text style={TextStyle.card_m_sub}>{getPlatform(game)}</Text>
         </Text>
       </View>
