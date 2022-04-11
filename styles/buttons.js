@@ -47,6 +47,29 @@ export default StyleSheet.create({
     borderRadius: 5,
   },
 
+  card_pv_lg: {
+    height: 152,
+    width: 152,
+
+    borderRadius: 5,
+  },
+
+  card_pv_sm: {
+    width: 152,
+    height: 72,
+
+    borderRadius: 5,
+  },
+
+  card_pv_textbox: {
+    position: 'absolute',
+    bottom: 16,
+    maxWidth: 144,
+
+    paddingHorizontal: 8,
+    backgroundColor: 'rgba(24, 29, 35, 0.5)',
+  },
+
   theme_tag: {
     alignSelf: 'center',
 

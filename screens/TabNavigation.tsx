@@ -4,9 +4,6 @@ import {
 } from '@react-navigation/bottom-tabs'
 import Account from './TabNavigationScreens/Account'
 import Explore from './TabNavigationScreens/Explore'
-import Home from './TabNavigationScreens/Home'
-import ReleaseRadar from './TabNavigationScreens/ReleaseRadar'
-import Trending from './TabNavigationScreens/Trending'
 import {
   MaterialCommunityIcons,
   Ionicons,
@@ -15,6 +12,7 @@ import {
 import { View } from 'react-native'
 import AnticipatedToDetail from './stackNavigations/AnticipatedToDetail'
 import TrendingToDetail from './stackNavigations/TrendingToDetail'
+import HomeToDetail from './stackNavigations/HomeToDetail'
 
 import { theme_accent, theme_main } from '../styles/colors'
 import ButtonsStyle from '../styles/buttons'
@@ -43,7 +41,7 @@ export default () => {
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen
         name="Home"
-        component={Home}
+        component={HomeToDetail}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, focused }) => (
