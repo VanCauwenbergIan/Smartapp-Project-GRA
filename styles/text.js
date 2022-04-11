@@ -36,4 +36,15 @@ export default StyleSheet.create({
     color: theme_accent.alpha_light,
     fontSize: 12,
   },
+
+  li: {
+    color: theme_accent.alpha_light,
+    fontSize: 16,
+
+    borderRightWidth: 1,
+    borderRightColor: theme_main.dark,
+    paddingBottom: 16,
+    paddingLeft: 8,
+
+  },
 })

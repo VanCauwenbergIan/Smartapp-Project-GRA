@@ -17,6 +17,7 @@ import CoreStyle from '../../styles/core'
 import UtilsStyle from '../../styles/utils'
 import AgeRating from '../../components/AgeRating'
 import RatingChart from '../../components/RatingChart'
+import ColumnList from '../../components/ColumnList'
 
 const renderGame = ({ item }: { item: Game }) => {
   return <CardSmall game={item} key={item.id} />
@@ -145,6 +146,7 @@ export default ({ route }: { route: any }) => {
                 UtilsStyle.mb_1,
                 UtilsStyle.o_50,
                 UtilsStyle.text_bold,
+                { width: '45%' },
               ]}
             >
               {getReleaseDate(game)}
@@ -155,6 +157,7 @@ export default ({ route }: { route: any }) => {
                 UtilsStyle.text_bold,
                 UtilsStyle.text_italic,
                 UtilsStyle.mb_5,
+                { width: '45%' },
               ]}
             >
               {getDeveloper(game)}
@@ -190,6 +193,9 @@ export default ({ route }: { route: any }) => {
             >
               Platforms
             </Text>
+            {game && game.platforms ? (
+              <ColumnList list={game.platforms} />
+            ) : null}
             <Text
               style={[
                 TextStyle.sub_title,
@@ -199,6 +205,9 @@ export default ({ route }: { route: any }) => {
             >
               Modes
             </Text>
+            {game && game.game_modes ? (
+              <ColumnList list={game.game_modes} />
+            ) : null}
             <AgeRating game={game} />
           </View>
           <View style={CoreStyle.sub_container}>
