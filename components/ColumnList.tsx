@@ -9,7 +9,7 @@ export default ({ list }: { list: Name[] }) => {
     <View style={[UtilsStyle.wrap_around, UtilsStyle.mb_3]}>
       {list.map((t) => {
         return (
-          <Text
+          <Text numberOfLines={1}
             style={[UtilsStyle.w_50, TextStyle.li]}
             key={t.id}
           >

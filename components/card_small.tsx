@@ -30,7 +30,12 @@ export default ({ game }: { game: Game }) => {
       </View>
       <Text
         numberOfLines={2}
-        style={[TextStyle.card_m_main, ButtonsStyle.cs_textbox]}
+        style={[
+          TextStyle.card_m_main,
+          ButtonsStyle.cs_textbox,
+          UtilsStyle.full_size,
+          UtilsStyle.text_align_v,
+        ]}
       >
         {game.name}
       </Text>

@@ -45,6 +45,5 @@ export default StyleSheet.create({
     borderRightColor: theme_main.dark,
     paddingBottom: 16,
     paddingLeft: 8,
-
   },
 })

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { theme_main } from './colors'
+import { theme_main, theme_accent } from './colors'
 
 export default StyleSheet.create({
   background_dark: {
@@ -9,6 +9,8 @@ export default StyleSheet.create({
   background_light: {
     backgroundColor: theme_main.x_dark,
   },
+
+  color_accent: { color: theme_accent.alpha_light },
 
   main_container: {
     paddingHorizontal: 24,
