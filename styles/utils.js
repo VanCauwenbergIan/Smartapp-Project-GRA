@@ -9,6 +9,10 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
 
+  center_content_v: {
+    alignItems: 'center',
+  },
+
   flex_row: {
     flex: 1,
     flexDirection: 'row',

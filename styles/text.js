@@ -22,11 +22,6 @@ export default StyleSheet.create({
     fontSize: 20,
   },
 
-  card_l_sub: {
-    color: theme_main.light,
-    fontSize: 16,
-  },
-
   card_m_main: {
     color: theme_main.xx_light,
     fontSize: 12,
@@ -35,6 +30,11 @@ export default StyleSheet.create({
   card_m_sub: {
     color: theme_accent.alpha_light,
     fontSize: 12,
+  },
+
+  card_f_main: {
+    color: theme_main.xx_light,
+    fontSize: 22,
   },
 
   li: {

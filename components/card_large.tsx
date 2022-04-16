@@ -38,7 +38,7 @@ export default ({ game }: { game: Game }) => {
         >
           {game.name}
         </Text>
-        <Text style={[TextStyle.card_l_sub, UtilsStyle.mb_2]}>
+        <Text style={[TextStyle.body, UtilsStyle.mb_2]}>
           {game.genres ? game.genres[0].name : ''}
         </Text>
         <Text
@@ -58,11 +58,7 @@ export default ({ game }: { game: Game }) => {
             : 'N/A'}
         </Text>
         <Text
-          style={[
-            TextStyle.card_l_sub,
-            UtilsStyle.text_italic,
-            UtilsStyle.text_bold,
-          ]}
+          style={[TextStyle.body, UtilsStyle.text_italic, UtilsStyle.text_bold]}
         >
           {getDeveloper(game)}
         </Text>

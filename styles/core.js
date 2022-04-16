@@ -75,4 +75,25 @@ export default StyleSheet.create({
     bottom: -208,
     height: 256,
   },
+
+  searchbar: {
+    backgroundColor: theme_main.dark,
+    height: 32,
+
+    borderRadius: 10,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+
+  topbar_explore: {
+    flex: 1,
+    flexBasis: 200,
+    flexGrow: 0,
+  },
+
+  topbar_account: {
+    flex: 1,
+    flexBasis: 224,
+    flexGrow: 0,
+  },
 })
