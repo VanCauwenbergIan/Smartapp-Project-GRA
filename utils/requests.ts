@@ -182,6 +182,24 @@ export const favorites_test: Game[] = [
       id: 82054,
       image_id: 'co1rba',
     },
+    involved_companies: [
+      {
+        id: 17332,
+        company: {
+          id: 45,
+          name: 'Sony Computer Entertainment, Inc. (SCEI)',
+        },
+        developer: false,
+      },
+      {
+        id: 17333,
+        company: {
+          id: 1012,
+          name: 'FromSoftware',
+        },
+        developer: true,
+      },
+    ],
     name: 'Bloodborne',
     similar_games: [
       {
@@ -272,6 +290,24 @@ export const favorites_test: Game[] = [
       id: 71083,
       image_id: 'co1iuj',
     },
+    involved_companies: [
+      {
+        id: 50685,
+        company: {
+          id: 314,
+          name: '4A Games',
+        },
+        developer: true,
+      },
+      {
+        id: 50686,
+        company: {
+          id: 423,
+          name: 'Deep Silver',
+        },
+        developer: false,
+      },
+    ],
     name: 'Metro Exodus',
     similar_games: [
       {
@@ -362,6 +398,24 @@ export const favorites_test: Game[] = [
       id: 80403,
       image_id: 'co1q1f',
     },
+    involved_companies: [
+      {
+        id: 40855,
+        company: {
+          id: 139,
+          name: 'Take-Two Interactive',
+        },
+        developer: false,
+      },
+      {
+        id: 98112,
+        company: {
+          id: 29,
+          name: 'Rockstar Games',
+        },
+        developer: true,
+      },
+    ],
     name: 'Red Dead Redemption 2',
     similar_games: [
       {
@@ -452,6 +506,56 @@ export const favorites_test: Game[] = [
       id: 89386,
       image_id: 'co1wyy',
     },
+    involved_companies: [
+      {
+        id: 17436,
+        company: {
+          id: 50,
+          name: 'WB Games',
+        },
+        developer: false,
+      },
+      {
+        id: 17768,
+        company: {
+          id: 248,
+          name: 'Bandai Namco Entertainment',
+        },
+        developer: false,
+      },
+      {
+        id: 17769,
+        company: {
+          id: 3119,
+          name: 'cdp.pl',
+        },
+        developer: false,
+      },
+      {
+        id: 17771,
+        company: {
+          id: 1217,
+          name: 'Spike ChunSoft',
+        },
+        developer: false,
+      },
+      {
+        id: 42142,
+        company: {
+          id: 908,
+          name: 'CD Projekt RED',
+        },
+        developer: true,
+      },
+      {
+        id: 64293,
+        company: {
+          id: 5696,
+          name: 'D3T Limited',
+        },
+        developer: false,
+      },
+    ],
     name: 'The Witcher 3: Wild Hunt',
     similar_games: [
       {
@@ -533,6 +637,510 @@ export const favorites_test: Game[] = [
           image_id: 'co1rfw',
         },
         name: 'The Cat Lady',
+      },
+    ],
+  },
+  {
+    id: 18166,
+    cover: {
+      id: 116166,
+      image_id: 'co2hmu',
+    },
+    involved_companies: [
+      {
+        id: 33413,
+        company: {
+          id: 743,
+          name: 'Tripwire Interactive',
+        },
+        developer: true,
+      },
+      {
+        id: 33414,
+        company: {
+          id: 9316,
+          name: 'Antimatter Games',
+        },
+        developer: true,
+      },
+    ],
+    name: 'Rising Storm 2: Vietnam',
+    similar_games: [
+      {
+        id: 8422,
+        cover: {
+          id: 10722,
+          image_id: 'vuxcu2rkrbokfnf14yse',
+        },
+        name: 'Breach & Clear',
+      },
+      {
+        id: 17130,
+        cover: {
+          id: 82164,
+          image_id: 'co1rec',
+        },
+        name: 'Unclaimed World',
+      },
+      {
+        id: 17379,
+        cover: {
+          id: 182268,
+          image_id: 'co3wn0',
+        },
+        name: 'Miscreated',
+      },
+      {
+        id: 18623,
+        cover: {
+          id: 67709,
+          image_id: 'ng8iyawuctwzqz32jo5p',
+        },
+        name: 'Villagers',
+      },
+      {
+        id: 25311,
+        cover: {
+          id: 68395,
+          image_id: 'rmzcpsfvnizymkhvd0qg',
+        },
+        name: 'Star Control: Origins',
+      },
+      {
+        id: 30229,
+        cover: {
+          id: 82240,
+          image_id: 'co1rgg',
+        },
+        name: 'Bannermen',
+      },
+      {
+        id: 36553,
+        cover: {
+          id: 82667,
+          image_id: 'co1rsb',
+        },
+        name: 'Medieval Kingdom Wars',
+      },
+      {
+        id: 78550,
+        cover: {
+          id: 82233,
+          image_id: 'co1rg9',
+        },
+        name: 'Bad North',
+      },
+      {
+        id: 79134,
+        cover: {
+          id: 82162,
+          image_id: 'co1rea',
+        },
+        name: 'Ancient Cities',
+      },
+      {
+        id: 106112,
+        cover: {
+          id: 128865,
+          image_id: 'co2rfl',
+        },
+        name: 'Steel Division 2',
+      },
+    ],
+  },
+  {
+    id: 28540,
+    cover: {
+      id: 82058,
+      image_id: 'co1rbe',
+    },
+    involved_companies: [
+      {
+        id: 50707,
+        company: {
+          id: 104,
+          name: 'Ubisoft Entertainment',
+        },
+        developer: false,
+      },
+      {
+        id: 50747,
+        company: {
+          id: 38,
+          name: 'Ubisoft Montreal',
+        },
+        developer: true,
+      },
+      {
+        id: 63901,
+        company: {
+          id: 840,
+          name: 'Ubisoft Sofia',
+        },
+        developer: false,
+      },
+      {
+        id: 63902,
+        company: {
+          id: 822,
+          name: 'Ubisoft Singapore',
+        },
+        developer: false,
+      },
+      {
+        id: 63904,
+        company: {
+          id: 702,
+          name: 'Ubisoft Montpellier',
+        },
+        developer: false,
+      },
+      {
+        id: 63905,
+        company: {
+          id: 3928,
+          name: 'Ubisoft Chengdu',
+        },
+        developer: false,
+      },
+      {
+        id: 63906,
+        company: {
+          id: 2921,
+          name: 'Ubisoft Kyiv',
+        },
+        developer: false,
+      },
+      {
+        id: 63907,
+        company: {
+          id: 896,
+          name: '(Archive) Ubisoft Quebec',
+        },
+        developer: false,
+      },
+      {
+        id: 63908,
+        company: {
+          id: 398,
+          name: 'Ubisoft Shanghai',
+        },
+        developer: false,
+      },
+      {
+        id: 63909,
+        company: {
+          id: 15260,
+          name: 'Ubisoft Philippines',
+        },
+        developer: false,
+      },
+      {
+        id: 63940,
+        company: {
+          id: 697,
+          name: 'Ubisoft Bucharest',
+        },
+        developer: false,
+      },
+    ],
+    name: "Assassin's Creed: Origins",
+    similar_games: [
+      {
+        id: 11156,
+        cover: {
+          id: 133030,
+          image_id: 'co2una',
+        },
+        name: 'Horizon Zero Dawn',
+      },
+      {
+        id: 11171,
+        cover: {
+          id: 73663,
+          image_id: 'co1ku7',
+        },
+        name: "Tom Clancy's Ghost Recon: Wildlands",
+      },
+      {
+        id: 18167,
+        cover: {
+          id: 81912,
+          image_id: 'co1r7c',
+        },
+        name: 'Hello Neighbor',
+      },
+      {
+        id: 25076,
+        cover: {
+          id: 80403,
+          image_id: 'co1q1f',
+        },
+        name: 'Red Dead Redemption 2',
+      },
+      {
+        id: 27316,
+        cover: {
+          id: 74261,
+          image_id: 'co1lat',
+        },
+        name: 'A Plague Tale: Innocence',
+      },
+      {
+        id: 28168,
+        cover: {
+          id: 81873,
+          image_id: 'co1r69',
+        },
+        name: 'Code Vein',
+      },
+      {
+        id: 28552,
+        cover: {
+          id: 94974,
+          image_id: 'co21a6',
+        },
+        name: 'Far Cry 5',
+      },
+      {
+        id: 36198,
+        cover: {
+          id: 117794,
+          image_id: 'co2iw2',
+        },
+        name: 'Children of Morta',
+      },
+      {
+        id: 36926,
+        cover: {
+          id: 82685,
+          image_id: 'co1rst',
+        },
+        name: 'Monster Hunter: World',
+      },
+      {
+        id: 54842,
+        cover: {
+          id: 82670,
+          image_id: 'co1rse',
+        },
+        name: 'Biomutant',
+      },
+    ],
+  },
+  {
+    id: 119133,
+    cover: {
+      id: 212094,
+      image_id: 'co4jni',
+    },
+    involved_companies: [
+      {
+        id: 158585,
+        company: {
+          id: 248,
+          name: 'Bandai Namco Entertainment',
+        },
+        developer: false,
+      },
+      {
+        id: 158586,
+        company: {
+          id: 1012,
+          name: 'FromSoftware',
+        },
+        developer: true,
+      },
+    ],
+    name: 'Elden Ring',
+    similar_games: [
+      {
+        id: 25636,
+        cover: {
+          id: 82102,
+          image_id: 'co1rcm',
+        },
+        name: 'Nights of Azure 2: Bride of the New Moon',
+      },
+      {
+        id: 54775,
+        cover: {
+          id: 75809,
+          image_id: 'co1mht',
+        },
+        name: 'Shadows: Awakening',
+      },
+      {
+        id: 57372,
+        cover: {
+          id: 76314,
+          image_id: 'co1mvu',
+        },
+        name: 'SoulWorker',
+      },
+      {
+        id: 81249,
+        cover: {
+          id: 91183,
+          image_id: 'co1ycv',
+        },
+        name: 'The Elder Scrolls VI',
+      },
+      {
+        id: 96217,
+        cover: {
+          id: 72919,
+          image_id: 'co1k9j',
+        },
+        name: 'Eternity: The Last Unicorn',
+      },
+      {
+        id: 103303,
+        cover: {
+          id: 91145,
+          image_id: 'co1ybt',
+        },
+        name: 'The Elder Scrolls: Blades',
+      },
+      {
+        id: 105049,
+        cover: {
+          id: 75344,
+          image_id: 'co1m4w',
+        },
+        name: 'Remnant: From the Ashes',
+      },
+      {
+        id: 106987,
+        cover: {
+          id: 130983,
+          image_id: 'co2t2f',
+        },
+        name: 'Torchlight III',
+      },
+      {
+        id: 113109,
+        cover: {
+          id: 81944,
+          image_id: 'co1r88',
+        },
+        name: 'Marvel Ultimate Alliance 3: The Black Order',
+      },
+      {
+        id: 115280,
+        cover: {
+          id: 75082,
+          image_id: 'co1lxm',
+        },
+        name: 'Oninaki',
+      },
+    ],
+  },
+  {
+    id: 1904,
+    cover: {
+      id: 82078,
+      image_id: 'co1rby',
+    },
+    involved_companies: [
+      {
+        id: 7094,
+        company: {
+          id: 517,
+          name: 'Paradox Interactive',
+        },
+        developer: false,
+      },
+      {
+        id: 35534,
+        company: {
+          id: 7466,
+          name: 'Paradox Development Studio',
+        },
+        developer: true,
+      },
+    ],
+    name: 'Europa Universalis IV',
+    similar_games: [
+      {
+        id: 662,
+        cover: {
+          id: 99296,
+          image_id: 'co24m8',
+        },
+        name: 'Anno 1404',
+      },
+      {
+        id: 848,
+        cover: {
+          id: 107506,
+          image_id: 'co2aya',
+        },
+        name: 'Rise of Nations',
+      },
+      {
+        id: 2040,
+        cover: {
+          id: 127673,
+          image_id: 'co2qih',
+        },
+        name: 'Knights of Honor',
+      },
+      {
+        id: 2918,
+        cover: {
+          id: 76330,
+          image_id: 'co1mwa',
+        },
+        name: 'Crusader Kings II',
+      },
+      {
+        id: 10774,
+        cover: {
+          id: 184775,
+          image_id: 'co3ykn',
+        },
+        name: 'Rise of Venice',
+      },
+      {
+        id: 11037,
+        cover: {
+          id: 93025,
+          image_id: 'co1zs1',
+        },
+        name: 'Victoria II',
+      },
+      {
+        id: 20776,
+        cover: {
+          id: 89611,
+          image_id: 'co1x57',
+        },
+        name: 'Imperium Romanum',
+      },
+      {
+        id: 28325,
+        cover: {
+          id: 67711,
+          image_id: 'bjczvgtluq7ff6jg2tmw',
+        },
+        name: 'Hearthlands',
+      },
+      {
+        id: 36553,
+        cover: {
+          id: 82667,
+          image_id: 'co1rsb',
+        },
+        name: 'Medieval Kingdom Wars',
+      },
+      {
+        id: 55036,
+        cover: {
+          id: 81871,
+          image_id: 'co1r67',
+        },
+        name: 'Anno 1800',
       },
     ],
   },

@@ -2,7 +2,6 @@ import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs'
-import Account from './TabNavigationScreens/Account'
 import Explore from './TabNavigationScreens/Explore'
 import {
   MaterialCommunityIcons,
@@ -17,6 +16,7 @@ import HomeToDetail from './stackNavigations/HomeToDetail'
 import { theme_accent, theme_main } from '../styles/colors'
 import ButtonsStyle from '../styles/buttons'
 import UtilsStyle from '../styles/utils'
+import AccountToDetail from './stackNavigations/AccountToDetail'
 
 export default () => {
   const Tab = createBottomTabNavigator()
@@ -35,6 +35,7 @@ export default () => {
     tabBarInactiveTintColor: theme_main.light_50,
     headerShown: false,
     tabBarShowLabel: false,
+    tabBarHideOnKeyboard: true,
   }
 
   return (
@@ -114,7 +115,7 @@ export default () => {
       />
       <Tab.Screen
         name="Account"
-        component={Account}
+        component={AccountToDetail}
         options={{
           tabBarLabel: 'Account',
           tabBarIcon: ({ color, focused }) => (
