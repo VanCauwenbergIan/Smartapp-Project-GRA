@@ -60,7 +60,7 @@ export default ({ rating, type }: { rating?: number; type: string }) => {
           </Svg>
         </View>
         <View style={[{ position: 'absolute' }, UtilsStyle.center_content]}>
-          <Text style={[TextStyle.title, UtilsStyle.text_bold]}>{p}</Text>
+          <Text style={[TextStyle.title, TextStyle.card_pv_main]}>{p}</Text>
           {type !== 'critic' ? (
             <Text
               style={[
@@ -99,7 +99,7 @@ export default ({ rating, type }: { rating?: number; type: string }) => {
           </Svg>
         </View>
         <View style={[{ position: 'absolute' }, UtilsStyle.center_content]}>
-          <Text style={[TextStyle.title, UtilsStyle.text_bold]}>N/A</Text>
+          <Text style={[TextStyle.title, TextStyle.card_pv_main]}>N/A</Text>
         </View>
       </View>
     )

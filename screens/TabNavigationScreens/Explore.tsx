@@ -77,7 +77,7 @@ export default () => {
             UtilsStyle.center_content_v,
           ]}
         >
-          <Text style={[TextStyle.sub_title, UtilsStyle.text_bold]}>
+          <Text style={TextStyle.sub_title}>
             Let us help you!
           </Text>
           <TouchableOpacity>

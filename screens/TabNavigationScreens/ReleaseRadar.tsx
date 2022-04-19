@@ -42,7 +42,7 @@ export default () => {
     >
       <Text style={[TextStyle.title, UtilsStyle.mb_3]}>Release Radar</Text>
       <Text
-        style={[TextStyle.sub_title, UtilsStyle.text_bold, UtilsStyle.mb_3]}
+        style={[TextStyle.sub_title, UtilsStyle.mb_3]}
       >
         Most anticipated
       </Text>
@@ -50,7 +50,7 @@ export default () => {
         <FlatList horizontal={true} data={antGames} renderItem={renderGameH} />
       </View>
       <Text
-        style={[TextStyle.sub_title, UtilsStyle.text_bold, UtilsStyle.mb_2]}
+        style={[TextStyle.sub_title, UtilsStyle.mb_2]}
       >
         Newest releases
       </Text>

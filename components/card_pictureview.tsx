@@ -49,7 +49,7 @@ export default ({ game }: { game: Game }) => {
       <View style={ButtonsStyle.card_pv_textbox}>
         <Text
           numberOfLines={1}
-          style={[TextStyle.card_m_main, UtilsStyle.text_bold]}
+          style={[TextStyle.card_m_main, TextStyle.card_pv_main]}
         >
           {game.name}
         </Text>

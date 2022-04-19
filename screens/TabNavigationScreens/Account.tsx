@@ -59,7 +59,7 @@ export default () => {
           ]}
         >
           <Text
-            style={[TextStyle.sub_title, UtilsStyle.text_bold, UtilsStyle.mr_4]}
+            style={[TextStyle.sub_title, UtilsStyle.mr_4]}
           >
             Favorites
           </Text>

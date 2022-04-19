@@ -44,7 +44,7 @@ export default ({ game }: { game: Game }) => {
         <Text
           style={[
             TextStyle.title,
-            UtilsStyle.text_bold,
+            TextStyle.theme,
             UtilsStyle.mb_2,
             {
               color: game.aggregated_rating
@@ -57,9 +57,7 @@ export default ({ game }: { game: Game }) => {
             ? Math.round(game.aggregated_rating) + '%'
             : 'N/A'}
         </Text>
-        <Text
-          style={[TextStyle.body, UtilsStyle.text_italic, UtilsStyle.text_bold]}
-        >
+        <Text style={[TextStyle.body, TextStyle.card_l_dev]}>
           {getDeveloper(game)}
         </Text>
       </View>
