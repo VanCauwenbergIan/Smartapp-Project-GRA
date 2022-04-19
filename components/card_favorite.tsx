@@ -50,10 +50,7 @@ export default ({ game }: { game: Game }) => {
           </Text>
           <Ionicons name="close" color={theme_main.light} size={24} />
         </View>
-        <Text
-          numberOfLines={1}
-          style={[TextStyle.body, UtilsStyle.text_bold, UtilsStyle.text_italic]}
-        >
+        <Text numberOfLines={1} style={[TextStyle.body, TextStyle.card_l_dev]}>
           {getDeveloper(game)}
         </Text>
       </View>

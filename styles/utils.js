@@ -131,14 +131,6 @@ export default StyleSheet.create({
     padding: baseline * 2,
   },
 
-  text_bold: {
-    fontWeight: 'bold',
-  },
-
-  text_italic: {
-    fontStyle: 'italic',
-  },
-
   text_align_v: {
     textAlignVertical: 'center',
   },

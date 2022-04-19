@@ -43,7 +43,7 @@ export default () => {
         </Text>
         <Text style={[TextStyle.title, UtilsStyle.mb_3]}>Obama_gaming</Text>
         <Text
-          style={[TextStyle.sub_title, UtilsStyle.text_bold, UtilsStyle.mb_3]}
+          style={[TextStyle.sub_title, UtilsStyle.mb_3]}
         >
           Recently viewed
         </Text>
@@ -55,7 +55,7 @@ export default () => {
         />
         <Text
           numberOfLines={1}
-          style={[TextStyle.sub_title, UtilsStyle.text_bold, UtilsStyle.mb_2]}
+          style={[TextStyle.sub_title, UtilsStyle.mb_2]}
         >
           More like...{' '}
           <Text style={CoreStyle.color_accent}>{randomGame.name}</Text>
@@ -73,7 +73,7 @@ export default () => {
         ) : null}
         <View style={[UtilsStyle.flex_row, UtilsStyle.space_between]}>
           <Text
-            style={[TextStyle.sub_title, UtilsStyle.text_bold, UtilsStyle.mb_3]}
+            style={[TextStyle.sub_title, UtilsStyle.mb_3]}
           >
             Favorites
           </Text>

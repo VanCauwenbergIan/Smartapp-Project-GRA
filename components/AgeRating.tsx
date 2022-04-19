@@ -11,7 +11,6 @@ export default ({ game }: { game?: Game }) => {
       <Text
         style={[
           TextStyle.sub_title,
-          UtilsStyle.text_bold,
           UtilsStyle.text_align_v,
           UtilsStyle.mr_1,
         ]}
@@ -24,7 +23,7 @@ export default ({ game }: { game?: Game }) => {
           UtilsStyle.p_1,
         ]}
       >
-        <Text style={[TextStyle.sub_title, UtilsStyle.text_bold]}>
+        <Text style={TextStyle.sub_title}>
           {getAgeRating(game)[0]}
         </Text>
       </View>

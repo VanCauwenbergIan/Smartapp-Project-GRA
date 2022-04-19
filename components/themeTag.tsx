@@ -1,7 +1,7 @@
 import { Pressable, Text } from 'react-native'
 
 import ButtonsStyle from '../styles/buttons'
-import text from '../styles/text'
+import TextStyle from '../styles/text'
 import UtilsStyle from '../styles/utils'
 
 export default ({ theme }: { theme: string }) => {
@@ -14,7 +14,7 @@ export default ({ theme }: { theme: string }) => {
         UtilsStyle.mb_1,
       ]}
     >
-      <Text style={[text.card_m_main, UtilsStyle.text_bold]}>{theme}</Text>
+      <Text style={[TextStyle.card_m_main, TextStyle.theme]}>{theme}</Text>
     </Pressable>
   )
 }

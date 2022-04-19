@@ -62,13 +62,7 @@ export default ({ route }: { route: any }) => {
               UtilsStyle.ai_flex_end,
             ]}
           >
-            <Text
-              style={[
-                TextStyle.sub_title,
-                UtilsStyle.text_bold,
-                { width: '45%' },
-              ]}
-            >
+            <Text style={[TextStyle.sub_title, { width: '45%' }]}>
               {game?.name}
             </Text>
             {game ? (
@@ -145,7 +139,6 @@ export default ({ route }: { route: any }) => {
                 TextStyle.sub_title,
                 UtilsStyle.mb_1,
                 UtilsStyle.o_50,
-                UtilsStyle.text_bold,
                 { width: '45%' },
               ]}
             >
@@ -154,8 +147,7 @@ export default ({ route }: { route: any }) => {
             <Text
               style={[
                 TextStyle.body,
-                UtilsStyle.text_bold,
-                UtilsStyle.text_italic,
+                TextStyle.card_l_dev,
                 UtilsStyle.mb_5,
                 { width: '45%' },
               ]}
@@ -174,7 +166,6 @@ export default ({ route }: { route: any }) => {
             <Text
               style={[
                 TextStyle.sub_title,
-                UtilsStyle.text_bold,
                 UtilsStyle.mb_1,
                 UtilsStyle.mt_2,
               ]}
@@ -187,7 +178,6 @@ export default ({ route }: { route: any }) => {
             <Text
               style={[
                 TextStyle.sub_title,
-                UtilsStyle.text_bold,
                 UtilsStyle.mb_1,
               ]}
             >
@@ -199,7 +189,6 @@ export default ({ route }: { route: any }) => {
             <Text
               style={[
                 TextStyle.sub_title,
-                UtilsStyle.text_bold,
                 UtilsStyle.mb_1,
               ]}
             >
@@ -214,7 +203,6 @@ export default ({ route }: { route: any }) => {
             <Text
               style={[
                 TextStyle.sub_title,
-                UtilsStyle.text_bold,
                 UtilsStyle.mb_3,
               ]}
             >
