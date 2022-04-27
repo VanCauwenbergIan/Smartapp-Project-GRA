@@ -1,7 +1,7 @@
 import { Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { FlatList } from 'react-native-gesture-handler'
-import CardLarge from '../../components/card_large'
+import CardLarge from '../../components/CardLarge'
 import { useEffect, useState } from 'react'
 import { getPopularGames } from '../../utils/requests'
 import Game from '../../interfaces/game'

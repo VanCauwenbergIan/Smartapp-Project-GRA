@@ -7,10 +7,10 @@ import {
   getSingleGame,
   getThemes,
 } from '../../utils/requests'
-import TopBar from '../../components/TopBar'
-import ThemeTag from '../../components/themeTag'
+import TopBar from '../../components/TopBarDetails'
+import ThemeTag from '../../components/ThemeTag'
 import { FlatList } from 'react-native-gesture-handler'
-import CardSmall from '../../components/card_small'
+import CardSmall from '../../components/CardSmall'
 
 import TextStyle from '../../styles/text'
 import CoreStyle from '../../styles/core'

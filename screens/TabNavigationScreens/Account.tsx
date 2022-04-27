@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler'
 import { MaterialIcons } from '@expo/vector-icons'
 import Game from '../../interfaces/game'
-import CardFavorite from '../../components/card_favorite'
+import CardFavorite from '../../components/CardFavorite'
 
 import { favorites_test } from '../../utils/requests'
 

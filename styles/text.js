@@ -71,6 +71,36 @@ export default StyleSheet.create({
   },
 
   theme: {
-    fontFamily: mainFontBold
-  }
+    fontFamily: mainFontBold,
+  },
+
+  title_large: {
+    fontSize: 52,
+    color: theme_main.xx_light,
+    fontFamily: secFont,
+    lineHeight: 62,
+  },
+
+  title_small: {
+    fontSize: 20,
+    color: theme_main.xx_light,
+    fontFamily: secFont,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+
+  footer_note: {
+    fontSize: 12,
+    fontFamily: mainFont,
+    color: theme_main.light,
+    textAlign: 'center',
+  },
+
+  secAction: {
+    fontSize: 16,
+    fontFamily: secFont,
+    color: theme_accent.alpha_light,
+  },
+
+  
 })

@@ -9,7 +9,7 @@ import {
 import { useEffect, useState } from 'react'
 import Game from '../../interfaces/game'
 import { getPopularGames } from '../../utils/requests'
-import CardLarge from '../../components/card_large'
+import CardLarge from '../../components/CardLarge'
 
 import TextStyle from '../../styles/text'
 import CoreStyle from '../../styles/core'
