@@ -3,11 +3,11 @@ import {
   StackNavigationOptions,
 } from '@react-navigation/stack'
 import React, { ReactElement } from 'react'
-import Details from '../DetailScreens/GameDetails'
-import Account from '../TabNavigationScreens/Account'
-import Home from '../TabNavigationScreens/Home'
+import Details from '../../DetailScreens/GameDetails'
+import Account from '../../TabNavigationScreens/Account'
+import Home from '../../TabNavigationScreens/Home'
 
-export default (tab: React.ComponentType): ReactElement => {
+export default (): ReactElement => {
   const Stack = createStackNavigator()
 
   const screenOptions: StackNavigationOptions = {

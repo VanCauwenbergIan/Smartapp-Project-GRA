@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View } from 'react-native'
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import TabNavigation from './screens/TabNavigation'
+import TabNavigation from './screens/Navigation/tabNavigation/TabNavigation'
 import { useEffect } from 'react'
 import { setBackgroundColorAsync } from 'expo-navigation-bar'
 import { useFonts } from 'expo-font'
@@ -10,6 +10,7 @@ import { useFonts } from 'expo-font'
 import { theme_main } from './styles/colors'
 import CoreStyle from './styles/core'
 import AppLoading from 'expo-app-loading'
+import OnboardingStack from './screens/Navigation/stackNavigation/OnboardingStack'
 
 const CustomTheme = {
   ...DefaultTheme,
@@ -39,7 +40,7 @@ export default function App() {
       <NavigationContainer theme={CustomTheme}>
         <SafeAreaProvider style={CoreStyle.background_dark}>
           <StatusBar style="inverted" />
-          <TabNavigation />
+          <OnboardingStack />
         </SafeAreaProvider>
       </NavigationContainer>
     )

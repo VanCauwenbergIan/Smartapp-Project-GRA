@@ -77,4 +77,26 @@ export default StyleSheet.create({
     borderColor: theme_accent.alpha_dark,
     borderRadius: 5,
   },
+
+  button_standard: {
+    padding: 16,
+    borderRadius: 50,
+    backgroundColor: theme_accent.alpha,
+  },
+
+  button_square: {
+    padding: 16,
+    borderRadius: 10,
+    backgroundColor: theme_accent.alpha,
+  },
+
+  button_alternate: {
+    paddingHorizontal: 16,
+    borderRadius: 50,
+    borderWidth: 2,
+    borderColor: theme_main.dark,
+    height: 56,
+    flexGrow: 1,
+    flexDirection: 'row',
+  },
 })

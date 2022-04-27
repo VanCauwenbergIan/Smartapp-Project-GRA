@@ -2,21 +2,21 @@ import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs'
-import Explore from './TabNavigationScreens/Explore'
+import Explore from '../../TabNavigationScreens/Explore'
 import {
   MaterialCommunityIcons,
   Ionicons,
   MaterialIcons,
 } from '@expo/vector-icons'
 import { View } from 'react-native'
-import AnticipatedToDetail from './stackNavigations/AnticipatedToDetail'
-import TrendingToDetail from './stackNavigations/TrendingToDetail'
-import HomeToDetail from './stackNavigations/HomeToDetail'
+import AnticipatedToDetail from '../stackNavigation/AnticipatedToDetail'
+import TrendingToDetail from '../stackNavigation/TrendingToDetail'
+import HomeToDetail from '../stackNavigation/HomeToDetail'
 
-import { theme_accent, theme_main } from '../styles/colors'
-import ButtonsStyle from '../styles/buttons'
-import UtilsStyle from '../styles/utils'
-import AccountToDetail from './stackNavigations/AccountToDetail'
+import { theme_accent, theme_main } from '../../../styles/colors'
+import ButtonsStyle from '../../../styles/buttons'
+import UtilsStyle from '../../../styles/utils'
+import AccountToDetail from '../stackNavigation/AccountToDetail'
 
 export default () => {
   const Tab = createBottomTabNavigator()

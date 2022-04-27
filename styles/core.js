@@ -96,4 +96,12 @@ export default StyleSheet.create({
     flexBasis: 224,
     flexGrow: 0,
   },
+
+  inputfield: {
+    fontSize: 20,
+    backgroundColor: theme_main.dark,
+    borderRadius: 10,
+    padding: 12,
+    color: theme_main.xx_light,
+  },
 })

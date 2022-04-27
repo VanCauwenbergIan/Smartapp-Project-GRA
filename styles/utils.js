@@ -29,6 +29,8 @@ export default StyleSheet.create({
 
   space_evenly: { justifyContent: 'space-evenly' },
 
+  space_around: { justifyContent: 'space-around' },
+
   jc_flex_end: {
     justifyContent: 'flex-end',
   },
@@ -95,6 +97,18 @@ export default StyleSheet.create({
     marginTop: baseline * 2,
   },
 
+  mt_3: {
+    marginTop: baseline * 3,
+  },
+
+  mt_4: {
+    marginTop: baseline * 4,
+  },
+
+  mt_5: {
+    marginTop: baseline * 5,
+  },
+
   mr_1: {
     marginRight: baseline * 1,
   },
@@ -131,8 +145,24 @@ export default StyleSheet.create({
     padding: baseline * 2,
   },
 
+  p_3: {
+    padding: baseline * 3,
+  },
+
+  p_4: {
+    padding: baseline * 4,
+  },
+
+  p_5: {
+    padding: baseline * 5,
+  },
+
   text_align_v: {
     textAlignVertical: 'center',
+  },
+
+  underline: {
+    textDecorationLine: 'underline',
   },
 
   o_50: {
