@@ -104,4 +104,30 @@ export default StyleSheet.create({
     padding: 12,
     color: theme_main.xx_light,
   },
+
+  modal: {
+    position: 'absolute',
+    top: 0,
+    paddingTop: 48,
+
+    height: '100%',
+    width: '100%',
+  },
+
+  modal_child: {
+    backgroundColor: theme_main.dark,
+    width: '75%',
+
+    borderRadius: 10,
+
+    shadowColor: theme_main.xxx_dark,
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+
+    elevation: 10,
+  },
 })

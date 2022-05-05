@@ -35,6 +35,10 @@ export default StyleSheet.create({
     justifyContent: 'flex-end',
   },
 
+  jc_center: {
+    justifyContent: 'center',
+  },
+
   ai_flex_end: {
     alignItems: 'flex-end',
   },
