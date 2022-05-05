@@ -32,7 +32,7 @@ export const getColorRating = (r: number): string[] => {
     return theme_indicator[70]
   } else if (r < 90) {
     return theme_indicator[80]
-  } else if (r < 100) {
+  } else if (r <= 100) {
     return theme_indicator[90]
   } else {
     return ['No rating', theme_main.light]

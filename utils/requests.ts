@@ -59,6 +59,19 @@ export const getSingleGame = (id: number) => {
   })
 }
 
+export const searchForGamesByName = (query: string) => {
+  return axios({
+    url: IGDB_URI + '/games',
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Client-ID': IGDB_CLIENTID,
+      Authorization: `Bearer ${IGDB_TOKEN}`,
+    },
+    data: `fields aggregated_rating, cover.image_id, genres.name, involved_companies.developer, involved_companies.company.name, name, rating, total_rating; limit 500;where name ~ *"${query}"* & total_rating_count >= 1; sort total_rating desc;`,
+  })
+}
+
 export const getDeveloper = (game?: Game): string => {
   let r: string = ''
 

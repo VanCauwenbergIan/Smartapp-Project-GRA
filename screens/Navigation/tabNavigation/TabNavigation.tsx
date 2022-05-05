@@ -21,6 +21,7 @@ import { useState } from 'react'
 import Game from '../../../interfaces/game'
 import { HistoryContext } from '../../../utils/historyContext'
 import { FavoritesContext } from '../../../utils/favoritesContext'
+import ExploreToDetail from '../stackNavigation/ExploreToDetail'
 
 export default () => {
   const [favorites, setFavorites] = useState<Game[]>([])
@@ -81,7 +82,7 @@ export default () => {
           />
           <Tab.Screen
             name="Explore"
-            component={Explore}
+            component={ExploreToDetail}
             options={{
               tabBarLabel: 'Explore',
               tabBarIcon: ({ focused }) => (
