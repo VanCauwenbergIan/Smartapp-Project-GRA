@@ -13,8 +13,6 @@ export default ({
   total?: Number
   position: Number
 }) => {
-  let dots = []
-
   return (
     <View style={UtilsStyle.flex_row}>
       {[

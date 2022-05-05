@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useEffect, useState } from 'react'
 import Game from '../../interfaces/game'
 import { getAnticipatedGames, getNewReleases } from '../../utils/requests'
-import { FlatList } from 'react-native-gesture-handler'
+import { FlatList, ScrollView } from 'react-native-gesture-handler'
 import CardMedium from '../../components/CardMedium'
 import CardLV from '../../components/CardListview'
 
@@ -41,26 +41,30 @@ export default () => {
       ]}
     >
       <Text style={[TextStyle.title, UtilsStyle.mb_3]}>Release Radar</Text>
-      <Text
-        style={[TextStyle.sub_title, UtilsStyle.mb_3]}
-      >
-        Most anticipated
-      </Text>
-      <View style={UtilsStyle.mb_3}>
-        <FlatList horizontal={true} data={antGames} renderItem={renderGameH} />
-      </View>
-      <Text
-        style={[TextStyle.sub_title, UtilsStyle.mb_2]}
-      >
-        Newest releases
-      </Text>
-      <View>
-        <FlatList
-          contentContainerStyle={{ paddingBottom: 64 }}
-          data={newGames}
-          renderItem={renderGameV}
-        />
-      </View>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          <View>
+            <Text style={[TextStyle.sub_title, UtilsStyle.mb_3]}>
+              Most anticipated
+            </Text>
+            <View style={UtilsStyle.mb_3}>
+              <FlatList
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}
+                data={antGames}
+                renderItem={renderGameH}
+              />
+            </View>
+            <Text style={[TextStyle.sub_title, UtilsStyle.mb_2]}>
+              Newest releases
+            </Text>
+          </View>
+        }
+        contentContainerStyle={{ paddingBottom: 64 }}
+        data={newGames}
+        renderItem={renderGameV}
+      ></FlatList>
     </SafeAreaView>
   )
 }

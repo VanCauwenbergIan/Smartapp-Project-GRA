@@ -9,4 +9,5 @@ declare module '@env' {
   export const MESSAGING_SENDER_ID: string
   export const APP_ID: string
   export const MEASUREMENT_ID: string
+  export const CLIENT_ID_GOOGLE: string
 }

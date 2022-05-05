@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import TopBar from '../../components/TopBarGeneric'
@@ -9,18 +9,67 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { theme_main } from '../../styles/colors'
 import Seperator from '../../components/Seperator'
 import GoogleLogo from '../../assets/logos/GoogleLogo'
+import TwitchLogo from '../../assets/logos/TwitchLogoT'
+import FaceBookLogo from '../../assets/logos/FaceBookLogo'
+import { useAuth } from '../../utils/authContext'
+import { auth } from '../../utils/firebase'
+import {
+  signInWithEmailAndPassword,
+  UserCredential,
+  getRedirectResult,
+  GoogleAuthProvider,
+  getAuth,
+  signInWithCredential,
+  AuthCredential,
+} from 'firebase/auth'
+import * as WebBrowser from 'expo-web-browser'
+import * as Google from 'expo-auth-session/providers/google'
 
 import UtilsStyle from '../../styles/utils'
 import TextStyle from '../../styles/text'
 import CoreStyle from '../../styles/core'
-import TwitchLogo from '../../assets/logos/TwitchLogoT'
-import FaceBookLogo from '../../assets/logos/FaceBookLogo'
+
+WebBrowser.maybeCompleteAuthSession()
 
 export default () => {
   const [email, setEmail] = useState<string>()
   const [password, setPassword] = useState<string>()
+  const { setUser } = useAuth()
+  const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
+    clientId:
+      '146801417023-dalr1tasar5gmhpl028bofiv4pad4o9g.apps.googleusercontent.com',
+  })
+
+  useEffect(() => {
+    if (response?.type === 'success') {
+      const { id_token } = response.params
+
+      const credential = GoogleAuthProvider.credential(id_token)
+      signInWithCredential(auth, credential).then((u: UserCredential) => {
+        setUser(u)
+        navigate('Tab')
+      })
+    }
+  }, [response])
 
   const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
+
+  const login = () => {
+    if (email && password) {
+      signInWithEmailAndPassword(
+        auth,
+        email.replace(' ', ''),
+        password.replace(' ', ''),
+      )
+        .then((u: UserCredential) => {
+          setUser(u)
+          navigate('Tab')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }
 
   return (
     <SafeAreaView>
@@ -31,6 +80,7 @@ export default () => {
           <TextInput
             style={[CoreStyle.inputfield, UtilsStyle.mb_3]}
             onChangeText={setEmail}
+            keyboardType="email-address"
             value={email}
           />
           <Text style={[UtilsStyle.mb_1, TextStyle.sub_title]}>Password</Text>
@@ -38,6 +88,7 @@ export default () => {
             style={[CoreStyle.inputfield, UtilsStyle.mb_2]}
             onChangeText={setPassword}
             value={password}
+            secureTextEntry
           />
           <TouchableOpacity>
             <Text
@@ -52,28 +103,26 @@ export default () => {
               Forgot your password?
             </Text>
           </TouchableOpacity>
-          <NavigationButton
-            text="Log in"
-            action={() => navigate('Tab')}
-            style="square"
-          />
+          <NavigationButton text="Log in" action={login} style="square" />
           <Seperator text="or" />
           <View style={UtilsStyle.mt_2}>
             <NavigationButton
               text="Google"
-              action={() => navigate('Tab')}
+              action={() => {
+                promptAsync()
+              }}
               style="alternate"
               Logo={GoogleLogo}
             />
             <NavigationButton
               text="Twitch"
-              action={() => navigate('Tab')}
+              action={login}
               style="alternate"
               Logo={TwitchLogo}
             />
             <NavigationButton
               text="Facebook"
-              action={() => navigate('Tab')}
+              action={login}
               style="alternate"
               Logo={FaceBookLogo}
             />

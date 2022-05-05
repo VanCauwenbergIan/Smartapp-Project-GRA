@@ -9,9 +9,33 @@ import UtilsStyle from '../styles/utils'
 import ButtonsStyle from '../styles/buttons'
 import TextStyle from '../styles/text'
 import { theme_main } from '../styles/colors'
+import { TouchableOpacity } from 'react-native'
+import { useFavorites } from '../utils/favoritesContext'
+import { auth } from '../utils/firebase'
+import { database } from '../utils/database'
 
 export default ({ game }: { game: Game }) => {
   const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
+  const { setFavorites, favorites } = useFavorites()
+
+  const removeFavorite = () => {
+    if (checkIfFavorite(game) && auth.currentUser) {
+      var array = favorites
+      let index = array.findIndex((item) => item.id == game.id)
+      array.splice(index, 1)
+      setFavorites(array)
+
+      database(auth.currentUser.uid).setFavorites(array)
+    }
+  }
+
+  const checkIfFavorite = (game: Game) => {
+    if (favorites.some((item) => item.id == game.id)) {
+      return true
+    } else {
+      return false
+    }
+  }
 
   return (
     <Pressable
@@ -48,7 +72,9 @@ export default ({ game }: { game: Game }) => {
           >
             {game.name}
           </Text>
-          <Ionicons name="close" color={theme_main.light} size={24} />
+          <TouchableOpacity onPress={() => removeFavorite()}>
+            <Ionicons name="close" color={theme_main.light} size={24} />
+          </TouchableOpacity>
         </View>
         <Text numberOfLines={1} style={[TextStyle.body, TextStyle.card_l_dev]}>
           {getDeveloper(game)}
