@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native'
+import { Keyboard, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { MaterialIcons } from '@expo/vector-icons'
 import {
@@ -8,7 +8,7 @@ import {
 } from 'react-native-gesture-handler'
 import { useEffect, useState } from 'react'
 import Game from '../../interfaces/game'
-import { getPopularGames } from '../../utils/requests'
+import { getPopularGames, searchForGamesByName } from '../../utils/requests'
 import CardLarge from '../../components/CardLarge'
 
 import TextStyle from '../../styles/text'
@@ -21,18 +21,31 @@ const renderGame = ({ item }: { item: Game }) => {
 }
 
 export default () => {
-  const [games, setGames] = useState<Game[]>()
+  const [popGames, setPopGames] = useState<Game[]>()
+  const [searchData, setSearchData] = useState<Game[]>()
   const [input, setInput] = useState<string>()
 
   useEffect(() => {
     getPopularGames().then((r) => {
-      setGames(r.data)
+      setPopGames(r.data)
+      setSearchData(r.data)
     })
   }, [])
 
   useEffect(() => {
-    const timeOutId = setTimeout(() => console.log('Not typing anymore'), 1000)
-    return () => clearTimeout(timeOutId)
+    if (input) {
+      const timeOutId = setTimeout(
+        () =>
+          searchForGamesByName(input).then((r) => {
+            console.log('fetch')
+            setSearchData(r.data)
+          }),
+        1000,
+      )
+      return () => clearTimeout(timeOutId)
+    } else {
+      setSearchData(popGames)
+    }
   }, [input])
 
   return (
@@ -72,10 +85,25 @@ export default () => {
           <TextInput
             placeholder="Search"
             placeholderTextColor={theme_main.light}
-            style={TextStyle.body}
+            style={[TextStyle.body, { width: 276 }]}
             value={input}
             onChangeText={setInput}
           />
+          {input ? (
+            <TouchableOpacity
+              onPress={() => {
+                Keyboard.dismiss()
+                setInput('')
+              }}
+            >
+              <MaterialIcons
+                style={UtilsStyle.ml_1}
+                name="close"
+                color={theme_main.light}
+                size={24}
+              />
+            </TouchableOpacity>
+          ) : null}
         </View>
         <View
           style={[
@@ -93,12 +121,19 @@ export default () => {
           </TouchableOpacity>
         </View>
       </View>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        style={UtilsStyle.full_size}
-        data={games}
-        renderItem={renderGame}
-      />
+      {searchData && searchData.length >= 1 ? (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          style={UtilsStyle.full_size}
+          contentContainerStyle={{ paddingBottom: 200 }}
+          data={searchData}
+          renderItem={renderGame}
+        />
+      ) : (
+        <Text style={TextStyle.body}>
+          {input ? `We couldn't find anything for '${input}'` : ''}
+        </Text>
+      )}
     </SafeAreaView>
   )
 }

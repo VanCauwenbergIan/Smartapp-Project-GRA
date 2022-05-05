@@ -33,7 +33,7 @@ export default ({ game }: { game: Game }) => {
       </View>
       <View style={[UtilsStyle.w_50, UtilsStyle.p_1]}>
         <Text
-          numberOfLines={3}
+          numberOfLines={2}
           style={[TextStyle.card_l_main, UtilsStyle.mb_1]}
         >
           {game.name}
