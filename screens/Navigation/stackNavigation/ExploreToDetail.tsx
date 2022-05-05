@@ -3,6 +3,7 @@ import {
   StackNavigationOptions,
 } from '@react-navigation/stack'
 import React, { ReactElement } from 'react'
+import Modal from '../../../components/ModalSorting'
 import Details from '../../DetailScreens/GameDetails'
 import Explore from '../../TabNavigationScreens/Explore'
 

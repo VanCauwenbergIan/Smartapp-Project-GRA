@@ -99,4 +99,11 @@ export default StyleSheet.create({
     flexGrow: 1,
     flexDirection: 'row',
   },
+
+  button_sorting: {
+    height: 44,
+
+    borderBottomColor: theme_main.light,
+    borderBottomWidth: 1,
+  },
 })

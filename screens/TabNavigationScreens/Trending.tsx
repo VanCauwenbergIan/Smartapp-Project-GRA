@@ -36,6 +36,7 @@ export default () => {
         Popular games {'\n'}right now
       </Text>
       <FlatList
+        contentContainerStyle={{ paddingBottom: 72 }}
         showsVerticalScrollIndicator={false}
         data={popGames}
         renderItem={renderGame}

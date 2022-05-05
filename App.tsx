@@ -1,8 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import TabNavigation from './screens/Navigation/tabNavigation/TabNavigation'
 import { useEffect } from 'react'
 import { setBackgroundColorAsync } from 'expo-navigation-bar'
 import { useFonts } from 'expo-font'
