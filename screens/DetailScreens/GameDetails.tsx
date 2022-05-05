@@ -18,6 +18,9 @@ import UtilsStyle from '../../styles/utils'
 import AgeRating from '../../components/AgeRating'
 import RatingChart from '../../components/RatingChart'
 import ColumnList from '../../components/ColumnList'
+import { useHistory } from '../../utils/historyContext'
+import { database } from '../../utils/database'
+import { auth } from '../../utils/firebase'
 
 const renderGame = ({ item }: { item: Game }) => {
   return <CardSmall game={item} key={item.id} />
@@ -25,6 +28,7 @@ const renderGame = ({ item }: { item: Game }) => {
 
 export default ({ route }: { route: any }) => {
   const [game, setGame] = useState<Game>()
+  const { history, setHistory } = useHistory()
 
   const { id } = route.params
 
@@ -36,9 +40,38 @@ export default ({ route }: { route: any }) => {
     })
   }, [])
 
+  useEffect(() => {
+    if (auth.currentUser && game) {
+      if (!checkIfInHistory(game)) {
+        var array = history
+        if (history.length >= 25) {
+          array.splice(-1, 1)
+        }
+        array.unshift(game)
+        setHistory(array)
+        database(auth.currentUser.uid).setHistory(array)
+      } else {
+        var array = history
+        let index = array.findIndex((item) => item.id == game.id)
+        array.splice(index, 1)
+        array.unshift(game)
+        setHistory(array)
+        database(auth.currentUser.uid).setHistory(array)
+      }
+    }
+  }, [game])
+
+  const checkIfInHistory = (game: Game) => {
+    if (history.some((item) => item.id == game.id)) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   return (
     <View style={[CoreStyle.background_dark, UtilsStyle.full_size]}>
-      <TopBar id={id} />
+      {game ? <TopBar game={game} /> : null}
       <ScrollView>
         <View style={CoreStyle.screenshot_container}>
           {game ? (
@@ -164,51 +197,31 @@ export default ({ route }: { route: any }) => {
               })}
             </View>
             <Text
-              style={[
-                TextStyle.sub_title,
-                UtilsStyle.mb_1,
-                UtilsStyle.mt_2,
-              ]}
+              style={[TextStyle.sub_title, UtilsStyle.mb_1, UtilsStyle.mt_2]}
             >
               About
             </Text>
             <Text style={[TextStyle.body, UtilsStyle.mb_4]}>
               {game?.summary}
             </Text>
-            <Text
-              style={[
-                TextStyle.sub_title,
-                UtilsStyle.mb_1,
-              ]}
-            >
+            <Text style={[TextStyle.sub_title, UtilsStyle.mb_1]}>
               Platforms
             </Text>
             {game && game.platforms ? (
               <ColumnList list={game.platforms} />
             ) : null}
-            <Text
-              style={[
-                TextStyle.sub_title,
-                UtilsStyle.mb_1,
-              ]}
-            >
-              Modes
-            </Text>
+            <Text style={[TextStyle.sub_title, UtilsStyle.mb_1]}>Modes</Text>
             {game && game.game_modes ? (
               <ColumnList list={game.game_modes} />
             ) : null}
             <AgeRating game={game} />
           </View>
           <View style={CoreStyle.sub_container}>
-            <Text
-              style={[
-                TextStyle.sub_title,
-                UtilsStyle.mb_3,
-              ]}
-            >
+            <Text style={[TextStyle.sub_title, UtilsStyle.mb_3]}>
               Similar Games
             </Text>
             <FlatList
+              showsHorizontalScrollIndicator={false}
               style={UtilsStyle.mb_2}
               horizontal={true}
               data={game?.similar_games}

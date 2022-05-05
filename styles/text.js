@@ -13,6 +13,7 @@ export default StyleSheet.create({
     fontFamily: secFont,
     color: theme_main.xx_light,
     fontSize: 28,
+    height: 40,
   },
 
   sub_title: {
@@ -101,6 +102,4 @@ export default StyleSheet.create({
     fontFamily: secFont,
     color: theme_accent.alpha_light,
   },
-
-  
 })

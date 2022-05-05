@@ -6,20 +6,57 @@ import TopBar from '../../components/TopBarGeneric'
 import NavigationButton from '../../components/NavigationButton'
 import ProgressIndicator from '../../components/ProgressIndicator'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { useAuth } from '../../utils/authContext'
+import { ParamListBase, useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
+import {
+  createUserWithEmailAndPassword,
+  UserCredential,
+  updateProfile,
+} from 'firebase/auth'
+import { app, auth } from '../../utils/firebase'
 
 import UtilsStyle from '../../styles/utils'
 import TextStyle from '../../styles/text'
 import CoreStyle from '../../styles/core'
-import { ParamListBase, useNavigation } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
 
 export default () => {
   const [displayName, setDisplayName] = useState<string>()
   const [email, setEmail] = useState<string>()
   const [password, setPassword] = useState<string>()
   const [passwordVerification, setPasswordverification] = useState<string>()
+  const { setUser } = useAuth()
 
   const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
+
+  const signUp = (): void => {
+    if (
+      email &&
+      password &&
+      passwordVerification &&
+      displayName &&
+      password == passwordVerification
+    ) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.replace(' ', ''),
+        password.replace(' ', ''),
+      )
+        .then((user: UserCredential) => {
+          setUser(user.user)
+          if (auth.currentUser) {
+            updateProfile(auth.currentUser, {
+              displayName: displayName,
+            }).then(() => {
+              navigate('Tab')
+            })
+          }
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    }
+  }
 
   return (
     <SafeAreaView>
@@ -60,7 +97,7 @@ export default () => {
           </View>
           <NavigationButton
             text="Create account"
-            action={() => navigate('Verify')}
+            action={signUp}
             style="square"
           />
         </View>

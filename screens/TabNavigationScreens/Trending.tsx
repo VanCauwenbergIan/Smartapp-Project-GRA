@@ -35,7 +35,11 @@ export default () => {
       <Text style={[TextStyle.title, UtilsStyle.mb_3]}>
         Popular games {'\n'}right now
       </Text>
-      <FlatList data={popGames} renderItem={renderGame} />
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={popGames}
+        renderItem={renderGame}
+      />
     </SafeAreaView>
   )
 }

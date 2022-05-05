@@ -22,12 +22,18 @@ const renderGame = ({ item }: { item: Game }) => {
 
 export default () => {
   const [games, setGames] = useState<Game[]>()
+  const [input, setInput] = useState<string>()
 
   useEffect(() => {
     getPopularGames().then((r) => {
       setGames(r.data)
     })
   }, [])
+
+  useEffect(() => {
+    const timeOutId = setTimeout(() => console.log('Not typing anymore'), 1000)
+    return () => clearTimeout(timeOutId)
+  }, [input])
 
   return (
     <SafeAreaView
@@ -67,6 +73,8 @@ export default () => {
             placeholder="Search"
             placeholderTextColor={theme_main.light}
             style={TextStyle.body}
+            value={input}
+            onChangeText={setInput}
           />
         </View>
         <View
@@ -77,9 +85,7 @@ export default () => {
             UtilsStyle.center_content_v,
           ]}
         >
-          <Text style={TextStyle.sub_title}>
-            Let us help you!
-          </Text>
+          <Text style={TextStyle.sub_title}>Let us help you!</Text>
           <TouchableOpacity>
             <Text style={[TextStyle.body, CoreStyle.color_accent]}>
               recommend me games
@@ -88,6 +94,7 @@ export default () => {
         </View>
       </View>
       <FlatList
+        showsVerticalScrollIndicator={false}
         style={UtilsStyle.full_size}
         data={games}
         renderItem={renderGame}
