@@ -86,15 +86,11 @@ export default StyleSheet.create({
   },
 
   topbar_explore: {
-    flex: 1,
-    flexBasis: 200,
-    flexGrow: 0,
+    height: 200
   },
 
   topbar_account: {
-    flex: 1,
-    flexBasis: 224,
-    flexGrow: 0,
+    height: 224
   },
 
   inputfield: {

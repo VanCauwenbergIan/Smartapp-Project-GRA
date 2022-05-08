@@ -1,4 +1,4 @@
-import { FlatList, Text, View } from 'react-native'
+import { BackHandler, FlatList, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { getGreeting, pickRandomGame } from '../../utils/home'
 import Game from '../../interfaces/game'
@@ -92,14 +92,14 @@ export default () => {
         ) : (
           <View style={[UtilsStyle.full_size, UtilsStyle.mt_1]}>
             <Text style={[TextStyle.body, UtilsStyle.mb_2]}>
-              You haven't browsed any games yet...
+              You haven't browsed any games yet.
             </Text>
             <TouchableOpacity onPress={() => navigate('Trending')}>
               <Text
                 style={[
                   TextStyle.body,
                   CoreStyle.color_accent,
-                  UtilsStyle.mb_3,
+                  UtilsStyle.mb_5,
                 ]}
               >
                 Click here to get started!
@@ -149,7 +149,7 @@ export default () => {
           />
         ) : (
           <Text style={[TextStyle.body, UtilsStyle.mt_1]}>
-            You don't have any favorites yet!
+            You don't have any favorites yet.
           </Text>
         )}
       </ScrollView>

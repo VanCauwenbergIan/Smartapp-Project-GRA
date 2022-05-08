@@ -28,12 +28,12 @@ export default () => {
   const [data, setData] = useState<Game[]>(favorites)
   const [rerender, setRerender] = useState<boolean>(false)
   const [input, setInput] = useState<string>()
-  const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
+  const { replace } = useNavigation<StackNavigationProp<ParamListBase>>()
 
   const logout = () => {
     auth.signOut()
     auth.updateCurrentUser(null)
-    navigate('Login')
+    replace('Start')
   }
 
   // force a rerender of the flatlist
@@ -139,13 +139,19 @@ export default () => {
           </View>
         </View>
       </View>
-      <FlatList
-        contentContainerStyle={{ paddingBottom: 232 }}
-        data={data}
-        onTouchEnd={() => refresh()}
-        extraData={rerender}
-        renderItem={renderGame}
-      />
+      {data && data.length >= 1 ? (
+        <FlatList
+          contentContainerStyle={{ paddingBottom: 232 }}
+          data={data}
+          onTouchEnd={() => refresh()}
+          extraData={rerender}
+          renderItem={renderGame}
+        />
+      ) : (
+        <Text style={[TextStyle.body, { textAlign: 'center' }]}>
+          No favorites yet.
+        </Text>
+      )}
     </SafeAreaView>
   )
 }

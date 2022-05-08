@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native'
+import { BackHandler, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import TwitchLogo from '../../assets/logos/TwitchLogo'
 
@@ -9,6 +9,7 @@ import NavigationButton from '../../components/NavigationButton'
 import ProgressIndicator from '../../components/ProgressIndicator'
 import { ParamListBase, useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
+import { useEffect } from 'react'
 
 export default () => {
   const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
