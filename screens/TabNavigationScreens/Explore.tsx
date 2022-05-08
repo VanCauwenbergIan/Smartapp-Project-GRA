@@ -10,13 +10,15 @@ import { useEffect, useState } from 'react'
 import Game from '../../interfaces/game'
 import { getPopularGames, searchForGamesByName } from '../../utils/requests'
 import CardLarge from '../../components/CardLarge'
+import ModalFiltering from '../../components/ModalSorting'
+import { convertSortingString } from '../../utils/dataprocessing'
+import { ParamListBase, useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 
 import TextStyle from '../../styles/text'
 import CoreStyle from '../../styles/core'
 import UtilsStyle from '../../styles/utils'
 import { theme_main } from '../../styles/colors'
-import ModalFiltering from '../../components/ModalSorting'
-import { convertSortingString } from '../../utils/dataprocessing'
 
 const renderGame = ({ item }: { item: Game }) => {
   return <CardLarge game={item} key={item.id} />
@@ -27,7 +29,9 @@ export default () => {
   const [input, setInput] = useState<string>()
   const [modalVisible, setModalVisible] = useState<boolean>(false)
   const [sortingString, setSortingString] = useState<string>('Relevance')
-  const [asc, setAsc] = useState<boolean>(false)
+  const [asc, setAsc] = useState<boolean>(true)
+
+  const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
 
   useEffect(() => {
     const timeOutId = setTimeout(
@@ -131,7 +135,7 @@ export default () => {
             ]}
           >
             <Text style={TextStyle.sub_title}>Let us help you!</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigate('Filtering')}>
               <Text style={[TextStyle.body, CoreStyle.color_accent]}>
                 recommend me games
               </Text>

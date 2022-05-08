@@ -16,3 +16,9 @@ export const theme_accent = {
   alpha: '#8F47F8',
   alpha_light: '#A46EF3',
 }
+
+export const theme_errors = {
+  error_dark: '#E23131',
+  error: '#E23131',
+  error_light: '#E3C8C8',
+}

@@ -59,6 +59,32 @@ export const getSingleGame = (id: number) => {
   })
 }
 
+export const getPlatforms = () => {
+  return axios({
+    url: IGDB_URI + '/platforms',
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Client-ID': IGDB_CLIENTID,
+      Authorization: `Bearer ${IGDB_TOKEN}`,
+    },
+    data: 'fields name; limit 500; sort name asc;',
+  })
+}
+
+export const getGenres = () => {
+  return axios({
+    url: IGDB_URI + '/genres',
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Client-ID': IGDB_CLIENTID,
+      Authorization: `Bearer ${IGDB_TOKEN}`,
+    },
+    data: 'fields name; limit 500; sort name asc',
+  })
+}
+
 export const searchForGamesByName = (query: string) => {
   return axios({
     url: IGDB_URI + '/games',

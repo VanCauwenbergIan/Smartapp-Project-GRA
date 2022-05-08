@@ -43,6 +43,10 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
   },
 
+  ai_center: {
+    alignItems: 'center',
+  },
+
   flex_start: {
     justifyContent: 'flex-start',
   },
