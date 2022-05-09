@@ -8,10 +8,14 @@ import {
 } from 'react-native-gesture-handler'
 import { useEffect, useState } from 'react'
 import Game from '../../interfaces/game'
-import { getPopularGames, searchForGamesByName } from '../../utils/requests'
+import { searchForGamesByQuery } from '../../utils/requests'
 import CardLarge from '../../components/CardLarge'
 import ModalFiltering from '../../components/ModalSorting'
-import { convertSortingString } from '../../utils/dataprocessing'
+import {
+  convertSortingString,
+  findGameRecommendations,
+  sortLocally,
+} from '../../utils/dataprocessing'
 import { ParamListBase, useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 
@@ -19,40 +23,101 @@ import TextStyle from '../../styles/text'
 import CoreStyle from '../../styles/core'
 import UtilsStyle from '../../styles/utils'
 import { theme_main } from '../../styles/colors'
+import { useGames } from '../../utils/gameFilteringContext'
+import { GameCheckbox } from '../../interfaces/gameCheckbox'
+import { usePlatforms } from '../../utils/platformFilterContext'
+import { Checkbox } from '../../interfaces/checkbox'
 
 const renderGame = ({ item }: { item: Game }) => {
   return <CardLarge game={item} key={item.id} />
 }
 
 export default () => {
-  const [searchData, setSearchData] = useState<Game[]>()
+  const [recommendedGames, setRecommendedGames] = useState<Game[]>([])
+  const [searchData, setSearchData] = useState<Game[]>([])
   const [input, setInput] = useState<string>()
   const [modalVisible, setModalVisible] = useState<boolean>(false)
   const [sortingString, setSortingString] = useState<string>('Relevance')
   const [asc, setAsc] = useState<boolean>(true)
+  const [rerender, setRerender] = useState<boolean>(false)
 
   const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
+  const { games, setGames } = useGames()
+  const { platforms, setPlatforms } = usePlatforms()
 
   useEffect(() => {
-    const timeOutId = setTimeout(
-      () =>
-        searchForGamesByName(
-          convertSortingString(sortingString, input, asc),
-        ).then((r) => {
-          setSearchData(r.data)
-        }),
-      1000,
-    )
-    return () => clearTimeout(timeOutId)
+    if (games.length >= 3) {
+      var ga = games
+      var pa = platforms
+      var convertedGames: Game[] = []
+      var convertedPlatforms: number[] = []
+
+      ga.forEach((g: GameCheckbox) => {
+        convertedGames.push(g.object)
+      })
+      pa.forEach((p: Checkbox) => {
+        convertedPlatforms.push(p.id)
+      })
+
+      searchForGamesByQuery(
+        findGameRecommendations(convertedPlatforms, convertedGames),
+      ).then((r) => {
+        setRecommendedGames(r.data)
+        setSearchData(r.data)
+      })
+    } else {
+      searchForGamesByQuery(
+        convertSortingString(sortingString, input, asc),
+      ).then((r) => {
+        setSearchData(r.data)
+      })
+    }
+  }, [games])
+
+  useEffect(() => {
+    refresh()
+  }, [searchData])
+
+  useEffect(() => {
+    if (games.length < 3) {
+      const timeOutId = setTimeout(
+        () =>
+          searchForGamesByQuery(
+            convertSortingString(sortingString, input, asc),
+          ).then((r) => {
+            setSearchData(r.data)
+          }),
+        1000,
+      )
+      return () => clearTimeout(timeOutId)
+    } else {
+      if (input) {
+        setSearchData(
+          recommendedGames.filter((g) =>
+            g.name.toLowerCase().includes(input.toLowerCase()),
+          ),
+        )
+      } else {
+        setSearchData(recommendedGames)
+      }
+    }
   }, [input])
 
   useEffect(() => {
-    searchForGamesByName(convertSortingString(sortingString, input, asc)).then(
-      (r) => {
+    if (games.length < 3) {
+      searchForGamesByQuery(
+        convertSortingString(sortingString, input, asc),
+      ).then((r) => {
         setSearchData(r.data)
-      },
-    )
+      })
+    } else {
+      setSearchData(sortLocally(searchData, sortingString, asc))
+    }
   }, [sortingString, asc])
+
+  const refresh = () => {
+    setRerender(!rerender)
+  }
 
   return (
     <View>
@@ -135,7 +200,7 @@ export default () => {
             ]}
           >
             <Text style={TextStyle.sub_title}>Let us help you!</Text>
-            <TouchableOpacity onPress={() => navigate('Filtering')}>
+            <TouchableOpacity onPress={() => navigate('FilteringPlatforms')}>
               <Text style={[TextStyle.body, CoreStyle.color_accent]}>
                 recommend me games
               </Text>
@@ -149,6 +214,7 @@ export default () => {
             contentContainerStyle={{ paddingBottom: 404 }}
             data={searchData}
             renderItem={renderGame}
+            extraData={rerender}
           />
         ) : (
           <Text style={TextStyle.body}>

@@ -47,6 +47,20 @@ export default ({
         <Text style={TextStyle.card_l_main}>{text}</Text>
       </TouchableOpacity>
     )
+  } else if (style == 'alternate square') {
+    return (
+      <TouchableOpacity
+        style={[
+          ButtonsStyle.button_alternatesquare,
+          UtilsStyle.center_content,
+          UtilsStyle.mb_3,
+        ]}
+        onPress={action}
+      >
+        {Logo ? <Logo /> : null}
+        <Text style={TextStyle.card_l_main}>{text}</Text>
+      </TouchableOpacity>
+    )
   } else {
     return (
       <TouchableOpacity
