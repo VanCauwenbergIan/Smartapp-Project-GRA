@@ -61,7 +61,9 @@ export const sortLocally = (list: Game[], query: string, order: boolean) => {
         )
         .reverse()
     case 'Title':
-      var result = list.sort((a, b) => a.name.localeCompare(b.name))
+      var result = list.sort((a, b) =>
+        a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
+      )
       if (order) {
         return result
       } else {

@@ -80,7 +80,6 @@ export default () => {
         var og = [...originalGames]
         var fg = [...filteredGames]
         var addToOg: GameCheckboxType[] = []
-        console.log(ga)
         setCheckedGames(
           ga
             .sort(
@@ -94,15 +93,18 @@ export default () => {
         )
         ga.forEach((game) => {
           game.checked = true
-          var index = fg.findIndex((g) => g.key == game.key)
+          var index = fg.findIndex((g) => g.object.id == game.object.id)
           if (index >= 0) {
             fg.splice(index, 1)
           }
-          index = og.findIndex((g) => g.key == game.key)
+          index = og.findIndex((g) => g.object.id == game.object.id)
           if (index >= 0) {
             og[index].checked = true
           } else {
-            addToOg.push(game)
+            if (
+              !originalGames.some((ogame) => ogame.object.id == game.object.id)
+            )
+              addToOg.push(game)
           }
         })
         setOriginalGames((originalGames) =>
@@ -128,8 +130,8 @@ export default () => {
             .reverse(),
         )
         checkSelection()
-        refresh()
       }
+      refresh()
     }
   }, [originalGames])
 
@@ -174,12 +176,14 @@ export default () => {
           game.key = g.id
           game.object = g
           if (
-            !checkedGames.some((checkedGame) => checkedGame.key == game.key)
+            !checkedGames.some(
+              (checkedGame) => checkedGame.object.id == game.object.id,
+            )
           ) {
             result.push(game)
           }
 
-          if (!originalGames.some((og) => og.key == game.key)) {
+          if (!originalGames.some((og) => og.object.id == game.object.id)) {
             addToOg.push(game)
           }
         })
@@ -212,12 +216,14 @@ export default () => {
           game.key = g.id
           game.object = g
           if (
-            !checkedGames.some((checkedGame) => checkedGame.key == game.key)
+            !checkedGames.some(
+              (checkedGame) => checkedGame.object.id == game.object.id,
+            )
           ) {
             result.push(game)
           }
 
-          if (!originalGames.some((og) => og.key == game.key)) {
+          if (!originalGames.some((og) => og.object.id == game.object.id)) {
             addToOg.push(game)
           }
         })
@@ -240,10 +246,14 @@ export default () => {
   const handleCheckbox = (id: number) => {
     if (originalGames) {
       var ga = [...originalGames]
-      var index = originalGames.findIndex((g) => g.key == id)
+      var index = originalGames.findIndex((g) => g.object.id == id)
+      console.log(index)
       var game = ga[index]
       game.checked = !game.checked
-      if (game.checked) {
+      if (
+        game.checked &&
+        !checkedGames.some((cgame) => cgame.object.id == id)
+      ) {
         setCheckedGames((checkedGames) =>
           [...checkedGames, game]
             .sort(
@@ -257,12 +267,12 @@ export default () => {
         )
 
         var array = [...filteredGames]
-        var index = array.findIndex((g) => g.key == id)
+        var index = array.findIndex((g) => g.object.id == id)
         array.splice(index, 1)
         setFilteredGames(array)
-      } else {
+      } else if (!filteredGames.some((cgame) => cgame.object.id == id)) {
         var array = [...checkedGames]
-        var index = array.findIndex((g) => g.key == id)
+        var index = array.findIndex((g) => g.object.id == id)
         array.splice(index, 1)
         setCheckedGames(array)
 
