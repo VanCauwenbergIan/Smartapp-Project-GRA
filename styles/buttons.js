@@ -100,6 +100,13 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
 
+  button_alternatesquare: {
+    padding: 16,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: theme_main.dark,
+  },
+
   button_sorting: {
     height: 44,
 

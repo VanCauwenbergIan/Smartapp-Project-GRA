@@ -10,20 +10,27 @@ import { theme_accent, theme_errors, theme_main } from '../../styles/colors'
 import { useEffect, useState } from 'react'
 import ProgressIndicator from '../../components/ProgressIndicator'
 import { getPlatforms } from '../../utils/requests'
-import Name from '../../interfaces/name'
 import NavigationButton from '../../components/NavigationButton'
 import { Checkbox as CheckboxType } from '../../interfaces/checkbox'
 import { FlatList } from 'react-native-gesture-handler'
 import Checkbox from 'expo-checkbox'
+import { usePlatforms } from '../../utils/platformFilterContext'
+import { ParamListBase, useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
+
+// indien nog tijd => component maken (lijst van checkboxes komt nog vaker terug)
 
 export default () => {
   const [input, setInput] = useState<string>()
   const [rerender, setRerender] = useState<boolean>(false)
   const [error, setError] = useState<string>()
   const [pressed, setPressed] = useState<boolean>()
-  const [platforms, setPlatforms] = useState<CheckboxType[]>([])
+  const [originalPlatforms, setOriginalPlatforms] = useState<CheckboxType[]>([])
   const [filteredPlatforms, setFilteredPlatforms] = useState<CheckboxType[]>([])
   const [checkedPlatforms, setCheckedPlatforms] = useState<CheckboxType[]>([])
+
+  const { platforms, setPlatforms } = usePlatforms()
+  const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
 
   useEffect(() => {
     getPlatforms().then((r) => {
@@ -32,25 +39,55 @@ export default () => {
       array.forEach((c) => {
         c.checked = false
       })
-      setPlatforms(array)
       setFilteredPlatforms(array)
+      setOriginalPlatforms(array)
     })
   }, [])
 
   useEffect(() => {
+    if (filteredPlatforms.length >= 1) {
+      // restore context if user has selected platforms before
+      if (platforms && platforms.length >= 1 && !pressed) {
+        setPressed(true)
+        var pa = [...platforms]
+        var op = [...originalPlatforms]
+        var fp = [...filteredPlatforms]
+        setCheckedPlatforms(pa.sort((a, b) => a.name.localeCompare(b.name)))
+
+        pa.forEach((platform) => {
+          var index = fp.findIndex((p) => p.id == platform.id)
+          fp.splice(index, 1)
+          index = op.findIndex((p) => p.id == platform.id)
+          op[index].checked = true
+        })
+        setFilteredPlatforms(fp.sort((a, b) => a.name.localeCompare(b.name)))
+        setOriginalPlatforms(op.sort((a, b) => a.name.localeCompare(b.name)))
+        checkSelection()
+        refresh()
+      }
+    }
+  }, [originalPlatforms])
+
+  useEffect(() => {
     checkSelection()
-    if (error === '' && pressed) {
-      console.log('OK 2')
-      console.log(checkedPlatforms)
+    if (error === '' && checkedPlatforms.length >= 1) {
+      setPlatforms(checkedPlatforms)
+      navigate('FilteringGenres')
     }
   }, [pressed])
 
   useEffect(() => {
+    if (checkedPlatforms.length >= 1) {
+      setPlatforms(checkedPlatforms)
+    }
+  }, [checkedPlatforms])
+
+  useEffect(() => {
     if (input) {
       var pa: CheckboxType[] = []
-      platforms.forEach((platform) => {
+      originalPlatforms.forEach((platform) => {
         if (
-          !checkedPlatforms.includes(platform) &&
+          !checkedPlatforms.some((p) => p.id == platform.id) &&
           platform.name.toLowerCase().includes(input.toLowerCase())
         ) {
           pa.push(platform)
@@ -59,8 +96,8 @@ export default () => {
       setFilteredPlatforms(pa)
     } else {
       var pa: CheckboxType[] = []
-      platforms.forEach((platform) => {
-        if (!checkedPlatforms.includes(platform)) {
+      originalPlatforms.forEach((platform) => {
+        if (!checkedPlatforms.some((p) => p.id == platform.id)) {
           pa.push(platform)
         }
       })
@@ -69,9 +106,9 @@ export default () => {
   }, [input])
 
   const handleCheckbox = (id: number) => {
-    if (platforms) {
-      var pa = [...platforms]
-      var index = platforms.findIndex((p) => p.id == id)
+    if (originalPlatforms) {
+      var pa = [...originalPlatforms]
+      var index = originalPlatforms.findIndex((p) => p.id == id)
       var platform = pa[index]
       platform.checked = !platform.checked
       if (platform.checked) {
@@ -108,8 +145,8 @@ export default () => {
   }
 
   const checkSelection = () => {
-    if (platforms) {
-      var choices = platforms.filter((p) => p.checked == true)
+    if (originalPlatforms) {
+      var choices = originalPlatforms.filter((p) => p.checked == true)
 
       if (choices.length < 1 && pressed) {
         setError('Select one or more platforms.')
@@ -122,9 +159,9 @@ export default () => {
   const handlePress = () => {
     setPressed(true)
 
-    if (error === '' && pressed) {
-      console.log('OK 1')
-      console.log(checkedPlatforms)
+    if (error === '' && checkedPlatforms.length >= 1) {
+      setPlatforms(checkedPlatforms)
+      navigate('FilteringGenres')
     }
   }
 

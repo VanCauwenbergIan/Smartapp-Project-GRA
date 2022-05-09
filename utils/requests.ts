@@ -45,7 +45,6 @@ export const getNewReleases = () => {
   })
 }
 
-// untested
 export const getSingleGame = (id: number) => {
   return axios({
     url: IGDB_URI + '/games',
@@ -81,11 +80,11 @@ export const getGenres = () => {
       'Client-ID': IGDB_CLIENTID,
       Authorization: `Bearer ${IGDB_TOKEN}`,
     },
-    data: 'fields name; limit 500; sort name asc',
+    data: 'fields name; limit 500; sort name asc;',
   })
 }
 
-export const searchForGamesByName = (query: string) => {
+export const searchForGamesByQuery = (query: string) => {
   return axios({
     url: IGDB_URI + '/games',
     method: 'POST',
@@ -95,6 +94,22 @@ export const searchForGamesByName = (query: string) => {
       Authorization: `Bearer ${IGDB_TOKEN}`,
     },
     data: `${query}`,
+  })
+}
+
+export const getGamesByPlatformsAndGenres = (
+  platformIds: string,
+  genreIds: string,
+) => {
+  return axios({
+    url: IGDB_URI + '/games',
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Client-ID': IGDB_CLIENTID,
+      Authorization: `Bearer ${IGDB_TOKEN}`,
+    },
+    data: `fields age_ratings.rating, age_ratings.category , aggregated_rating, aggregated_rating_count, artworks.image_id, cover.image_id, first_release_date, release_dates.human, release_dates.date , game_modes.name, genres.name, involved_companies.developer, involved_companies.company.name, name, platforms.name, player_perspectives.name, rating, rating_count, screenshots.image_id,similar_games.name, similar_games.cover.image_id, slug, storyline, summary, themes.name, total_rating, total_rating_count; limit 500;where aggregated_rating_count >= 1 & aggregated_rating > 0 & total_rating_count >= 5 & parent_game = null & version_parent = null & hypes != null & release_dates.platform = ${platformIds} & genres = ${genreIds}; sort total_rating desc;`,
   })
 }
 
